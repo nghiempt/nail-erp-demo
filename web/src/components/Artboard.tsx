@@ -18,9 +18,11 @@ export default function Artboard({ html, width }: Props) {
   const [scale, setScale] = useState(1);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
-  // The artboards are fluid down to MIN_WIDTH; below that the dense dashboard
-  // layouts start to overlap, so we scale the whole page down instead.
-  const MIN_WIDTH = Math.min(width, 1100);
+  // The layouts hold fixed-width sidebars and detail panels that only fit
+  // side by side at the width the design was drawn for. Narrower than that
+  // and they overflow (and get clipped), so below this floor the whole page
+  // is scaled down rather than reflowed.
+  const MIN_WIDTH = width;
 
   useEffect(() => {
     const host = hostRef.current;
@@ -37,8 +39,10 @@ export default function Artboard({ html, width }: Props) {
     window.addEventListener("resize", fit);
     document.fonts?.ready.then(fit).catch(() => {});
 
+    // Observe the container, not the artboard: scaling changes the artboard's
+    // own box, which would feed straight back into this callback.
     const observer = new ResizeObserver(fit);
-    observer.observe(host);
+    if (host.parentElement) observer.observe(host.parentElement);
 
     return () => {
       window.removeEventListener("resize", fit);

@@ -184,12 +184,14 @@ function runLogic(scriptSrc, props) {
 }
 
 /**
- * The designs are authored as a rigid 1440x<N>px artboard. On screen we want
- * the page to fill whatever viewport it gets instead of sitting in a fixed
- * box with dead space beside it, so relax the outer shell: full width, height
- * becomes a floor rather than a cap, and the clipping that the fixed height
- * needed is dropped. Inner widths (sidebars, side panels) stay as designed —
- * the layouts are flexbox, so the main columns take up the slack.
+ * The designs are authored as a rigid 1440x<N>px artboard, which left dead
+ * space beside the page on any wider screen. Make the width fluid so the
+ * layout fills the window — the columns underneath are flexbox, so they take
+ * up the slack while sidebars keep their designed widths.
+ *
+ * The height is deliberately left alone: panels inside these layouts use
+ * `height: 100%`, which only resolves against a parent with a definite
+ * height. Swapping it for `min-height` collapses every one of them.
  */
 function fluidRoot(html) {
   const m = /^(\s*)<div style="([^"]*)"/.exec(html);
@@ -199,21 +201,11 @@ function fluidRoot(html) {
     .split(';')
     .map((d) => d.trim())
     .filter(Boolean)
-    .filter((d) => !/^(width|height|overflow)\s*:/i.test(d));
+    .filter((d) => !/^width\s*:/i.test(d));
 
   decls.unshift('width: 100%');
 
-  // A row-flow artboard (sidebar + content) relied on the fixed height to give
-  // its columns something to fill, so keep that as a floor. A column-flow page
-  // just stacks sections and sizes itself, so a floor there would reintroduce
-  // the empty band we are removing.
-  const isColumn = /flex-direction:\s*column/i.test(m[2]);
-  const minHeight = /height:\s*(\d+)px/i.exec(m[2])?.[1];
-  if (minHeight && !isColumn) decls.push(`min-height: ${minHeight}px`);
-
-  return (
-    m[1] + `<div style="${decls.join('; ')};"` + html.slice(m[0].length)
-  );
+  return m[1] + `<div style="${decls.join('; ')};"` + html.slice(m[0].length);
 }
 
 function convert(file) {
