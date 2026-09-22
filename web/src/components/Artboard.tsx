@@ -5,20 +5,22 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   html: string;
-  /** Intrinsic width of the design artboard. */
+  /**
+   * Width the design was authored at. Used as the minimum the layout is
+   * allowed to reflow to before we scale instead.
+   */
   width: number;
 };
 
-/**
- * Renders a converted design artboard. The designs are authored at a fixed
- * width, so we scale them down to fit narrower viewports and hand internal
- * link clicks to the Next.js router instead of reloading the page.
- */
 export default function Artboard({ html, width }: Props) {
   const router = useRouter();
   const hostRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const [height, setHeight] = useState<number | undefined>(undefined);
+
+  // The artboards are fluid down to MIN_WIDTH; below that the dense dashboard
+  // layouts start to overlap, so we scale the whole page down instead.
+  const MIN_WIDTH = Math.min(width, 1100);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -26,15 +28,13 @@ export default function Artboard({ html, width }: Props) {
 
     const fit = () => {
       const available = host.parentElement?.clientWidth ?? window.innerWidth;
-      const next = Math.min(1, available / width);
+      const next = available >= MIN_WIDTH ? 1 : available / MIN_WIDTH;
       setScale(next);
-      setHeight(host.scrollHeight * next);
+      setHeight(next === 1 ? undefined : host.offsetHeight * next);
     };
 
     fit();
     window.addEventListener("resize", fit);
-
-    // Fonts load after first paint and change the artboard's height.
     document.fonts?.ready.then(fit).catch(() => {});
 
     const observer = new ResizeObserver(fit);
@@ -44,7 +44,7 @@ export default function Artboard({ html, width }: Props) {
       window.removeEventListener("resize", fit);
       observer.disconnect();
     };
-  }, [width, html]);
+  }, [MIN_WIDTH, html]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -70,11 +70,26 @@ export default function Artboard({ html, width }: Props) {
   }, [router]);
 
   return (
-    <div className="artboard-viewport" style={{ height }}>
+    <div
+      className="artboard-viewport"
+      // While scaled the transform origin is the left edge, so centring the
+      // flex item would shift the page off to one side.
+      style={{ height, justifyContent: scale === 1 ? undefined : "flex-start" }}
+    >
       <div
         ref={hostRef}
         className="artboard-scaler"
-        style={{ width, transform: `scale(${scale})` }}
+        style={{
+          // Below the reflow floor the page holds its width and is scaled down
+          // instead, so `flex` must not stretch it back out.
+          ...(scale === 1
+            ? null
+            : {
+                flex: "0 0 auto",
+                width: MIN_WIDTH,
+                transform: `scale(${scale})`,
+              }),
+        }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
