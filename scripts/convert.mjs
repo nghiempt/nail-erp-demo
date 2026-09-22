@@ -125,6 +125,42 @@ function rewriteHref(href) {
   return href;
 }
 
+/**
+ * Tag each element with the role it plays in the layout, so `responsive.css`
+ * can target structure instead of matching fragments of inline style strings
+ * (which silently miss every value the author happened to vary).
+ */
+function roleOf(node, style, depth) {
+  const has = (re) => re.test(style);
+
+  if (depth === 0) return 'artboard';
+  if (node.name === 'aside' && depth === 1) return 'sidebar';
+  if (node.name === 'header') return 'topbar';
+  if (node.name === 'table') return 'table';
+  // The block wrapping a table is what has to scroll: a table told to scroll
+  // itself does not constrain its own rows.
+  if (node.children?.some((c) => c.type === 'el' && c.name === 'table')) {
+    return 'tablewrap';
+  }
+  if (has(/grid-template-columns/)) return 'grid';
+
+
+
+  // A column the design pinned to a fixed pixel width: on a narrow screen
+  // these must give up their width rather than force the row to overflow.
+  const pinnedWidth = /(?:^|;)\s*width:\s*(\d{3,})px/.exec(style);
+  if (has(/flex-shrink:\s*0/) && pinnedWidth && +pinnedWidth[1] >= 240) {
+    return 'pinned';
+  }
+
+  // Wide horizontal padding drawn for a 1440px canvas.
+  if (has(/padding:[^;]*\b(?:4\d|[5-9]\d|\d{3})px/)) return 'roomy';
+
+  if (node.name === 'h1' || node.name === 'h2') return 'heading';
+
+  return null;
+}
+
 function render(node, scope, out) {
   if (node.type === 'text') { out.push(escText(interpolate(node.value, scope))); return; }
   if (node.type === 'root') { node.children.forEach((c) => render(c, scope, out)); return; }
@@ -149,17 +185,25 @@ function render(node, scope, out) {
   }
 
   const attrs = [];
+  let style = '';
   for (let [k, v] of node.attrs) {
     if (k.startsWith('hint-')) continue;
     let val = interpolate(v, scope);
     if (val === false || val === undefined || val === null) continue;
     if (val === true) val = '';
     if (k === 'href') val = rewriteHref(String(val));
+    if (k === 'style') style = String(val);
     attrs.push(` ${k}="${esc(val)}"`);
   }
+
+  const role = roleOf(node, style, scope.$depth ?? 0);
+  if (role) attrs.push(` data-r="${role}"`);
+
   out.push(`<${node.name}${attrs.join('')}>`);
   if (VOID.has(node.name)) return;
-  node.children.forEach((c) => render(c, scope, out));
+  const inner = Object.create(scope);
+  inner.$depth = (scope.$depth ?? 0) + 1;
+  node.children.forEach((c) => render(c, inner, out));
   out.push(`</${node.name}>`);
 }
 

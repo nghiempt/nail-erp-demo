@@ -39,11 +39,18 @@ a:hover {
 }
 
 /* The designs were drawn at a fixed 1440px. The converter relaxes the width so
-   the layout fills the window instead of leaving a dead strip beside it; this
-   caps how far it may stretch on a large monitor so rows and copy stay
-   readable. */
+   the layout fills the window instead of leaving a dead strip beside it; the
+   cap keeps rows and copy readable on a large monitor. Below the design width
+   the page must use every pixel it has, so the cap is lifted there. */
 .artboard-scaler {
   flex: 1 1 auto;
   max-width: 1920px;
   min-width: 0;
+}
+
+@media (max-width: 1439px) {
+  .artboard-scaler {
+    max-width: none;
+    width: 100%;
+  }
 }

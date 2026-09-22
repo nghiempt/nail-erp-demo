@@ -1,56 +1,63 @@
 /*
- * Mobile / tablet layout.
+ * Mobile and tablet layout.
  *
- * The artboards carry all their styling in inline `style` attributes, which
- * beat any stylesheet rule of equal weight, so every override here has to be
- * `!important`. Rules are scoped to `.artboard-viewport` — the class the Artboard
- * component adds once it stops scaling the page down — so the desktop
- * rendering is left exactly as designed.
+ * The artboards keep all their styling in inline `style` attributes, which
+ * beat any stylesheet rule of equal weight, so everything here overrides with
+ * `!important`. Rules target the `data-r` role the converter stamps on each
+ * element rather than fragments of those inline styles — matching style text
+ * silently missed every value the designs happened to vary (a `repeat(6)`
+ * grid, a padding of 62px rather than 56px, and so on).
+ *
+ * Roles: artboard, sidebar, topbar, pinned, grid, table, roomy, heading.
  */
 
-/* ---- tablet: let the shell reflow, drop the rigid artboard height ---- */
+/* ---------- tablet and below ---------- */
 @media (max-width: 1439px) {
-  .artboard-scaler > div {
+  /* The artboard was drawn at a fixed height with the overflow clipped, so
+     anything that reflows taller would be cut off. */
+  [data-r="artboard"] {
     height: auto !important;
     min-height: 100dvh !important;
     overflow: visible !important;
   }
 
-  /* Panels inside used `height: 100%` against the artboard's fixed height;
-     with that gone they must size to their own content instead. */
-  .artboard-scaler > div [style*="height: 100%"] {
+  /* Panels inside sized themselves against that fixed height. */
+  [data-r="artboard"] [style*="height: 100%"] {
     height: auto !important;
   }
 
-  /* Side panels stop being a fixed column and wrap under the main content.
-     Matched by shape rather than depth: a pinned column the design gave a
-     fixed pixel width. The nav sidebar is excluded — it keeps its own width
-     until the phone breakpoint turns it into a drawer. */
-  .artboard-scaler > div > div aside[style*="flex-shrink: 0"],
-  .artboard-scaler > div > div section[style*="flex-shrink: 0"][style*="width:"] {
+  /* The artboard's own clip has to go or reflowed content is cut off, but
+     leave inner scroll regions alone — the table wrapper needs to keep
+     clipping so it can scroll. */
+  [data-r="artboard"] [style*="overflow: hidden"]:not([data-r="tablewrap"]) {
+    overflow: visible !important;
+  }
+
+  /* A pinned side column wraps under the content instead of squeezing it. */
+  [data-r="pinned"] {
     width: 100% !important;
     flex-shrink: 1 !important;
   }
 
-  .artboard-viewport [style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  [data-r="grid"] {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    flex-shrink: 1 !important;
+    max-width: 100% !important;
   }
 }
 
-/* ---- phone / small tablet ---- */
+/* ---------- phone ---------- */
 @media (max-width: 900px) {
-  .artboard-scaler > div {
+  [data-r="artboard"] {
     flex-direction: column !important;
   }
 
-  /* Sidebar becomes a collapsible drawer, opened by the button the Artboard
-     component injects. */
-  .artboard-scaler > div > aside {
+  /* The nav becomes a drawer, opened by the toggle the Artboard renders. */
+  [data-r="sidebar"] {
     position: fixed !important;
     z-index: 50;
     top: 0;
     left: 0;
-    bottom: 0;
     width: 272px !important;
     height: 100dvh !important;
     overflow-y: auto !important;
@@ -58,75 +65,143 @@
     transition: transform 0.22s ease;
   }
 
-  .artboard-viewport[data-nav="open"] .artboard-scaler > div > aside {
+  .artboard-viewport[data-nav="open"] [data-r="sidebar"] {
     transform: translateX(0);
   }
 
-  /* Rows of cards and split columns stack. */
-  .artboard-viewport [style*="display: flex"][style*="gap: 16px"],
-  .artboard-viewport [style*="display: flex"][style*="gap: 18px"] {
+  /* The top bar is a single row of controls drawn for a 1440px canvas; let it
+     wrap and grow rather than overlap itself. */
+  [data-r="topbar"] {
+    height: auto !important;
     flex-wrap: wrap !important;
+    row-gap: 10px !important;
+    padding: 12px 16px !important;
+    /* clear the floating drawer toggle */
+    padding-left: 66px !important;
   }
 
-  .artboard-viewport [style*="grid-template-columns: repeat(2"],
-  .artboard-viewport [style*="grid-template-columns: repeat(3"],
-  .artboard-viewport [style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  /* Any panel the design pinned to a fixed pixel column goes full width. */
-  .artboard-viewport aside[style*="px"],
-  .artboard-viewport section[style*="flex-shrink: 0"][style*="width:"] {
+  /* Search fields in the top bar are given a fixed width in the design. */
+  [data-r="topbar"] [style*="width: 2"],
+  [data-r="topbar"] [style*="width: 3"] {
     width: 100% !important;
+  }
+
+  [data-r="grid"] {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    /* the designs mark these `flex-shrink: 0`, which keeps the grid at its
+       full desktop width inside a much narrower parent */
+    flex-shrink: 1 !important;
+    max-width: 100% !important;
+  }
+
+  /* A flex child defaults to min-width:auto, so one long cell or a fixed
+     inner width makes the whole row refuse to shrink and spill off-screen.
+     This is the single most common cause of sideways overflow here. */
+  [data-r="artboard"] * {
+    min-width: 0;
+  }
+
+  /* `flex-shrink: 0` is all over these designs to stop rows collapsing at
+     1440px. On a phone it is the reason rows stay wider than the screen, so
+     allow shrinking everywhere except the drawer (which needs its width). */
+  [data-r="artboard"] [style*="flex-shrink: 0"]:not([data-r="sidebar"]) {
     flex-shrink: 1 !important;
   }
 
-  /* Tables are the one thing that genuinely cannot reflow — scroll them. */
-  .artboard-viewport table {
-    display: block !important;
+  /* Rows of side-by-side cards stack rather than compress to nothing. */
+  [data-r="artboard"] [style*="display: flex"][style*="gap: 16px"],
+  [data-r="artboard"] [style*="display: flex"][style*="gap: 14px"],
+  [data-r="artboard"] [style*="display: flex"][style*="gap: 12px"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* Rows of cards stack instead of overflowing. */
+  [data-r="artboard"] [style*="display: flex"][style*="gap: 16px"],
+  [data-r="artboard"] [style*="display: flex"][style*="gap: 18px"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* Rows the design kept on one line — filter chips, tabs, segmented
+     controls — are flex containers with nothing but a gap. Wrapping them
+     changes the look, so let them scroll sideways instead, which keeps the
+     last chip reachable rather than clipped at the screen edge. */
+  [data-r="artboard"] div[style^="display: flex; gap:"] {
     overflow-x: auto !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [data-r="artboard"] div[style^="display: flex; gap:"]::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Tables are the one thing that genuinely cannot reflow. Scroll the block
+     that wraps the table — a table told to scroll itself still lets its own
+     rows set the width, so the columns push out of the page instead. */
+  [data-r="tablewrap"] {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  [data-r="table"] {
+    width: auto !important;
+    min-width: 100% !important;
     white-space: nowrap !important;
   }
 
-  /* Tighten the generous desktop padding. */
-  .artboard-viewport [style*="padding: 22px 26px"],
-  .artboard-viewport [style*="padding: 0 26px"] {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+  /* The wrapper is a flex child, so it needs a zero basis and min-width
+     before it will shrink below its content and start scrolling. */
+  [data-r="tablewrap"] {
+    flex: 1 1 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    display: block !important;
   }
 
-  .artboard-viewport [style*="padding: 68px 80px"],
-  .artboard-viewport [style*="padding: 56px 80px"],
-  .artboard-viewport [style*="padding: 40px 80px"] {
+  /* The brand lockup is a flex row; with min-width:0 above it squeezes the
+     wordmark onto several lines. */
+  [data-r="topbar"] a[style*="display: flex"] > div,
+  [data-r="topbar"] a[style*="display: flex"] {
+    white-space: nowrap !important;
+  }
+
+  /* Padding drawn for a wide canvas. */
+  [data-r="roomy"] {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
 
-  /* The landing hero and login split are two columns side by side. */
-  .artboard-viewport section[style*="display: flex"][style*="gap: 60px"] {
+  [data-r="artboard"] [style*="padding: 22px 26px"]:not([data-r="topbar"]),
+  [data-r="artboard"] [style*="padding: 0 26px"]:not([data-r="topbar"]) {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Headline sizes drawn for a 1440px canvas. */
+  [data-r="heading"][style*="font-size: 5"],
+  [data-r="heading"][style*="font-size: 4"],
+  [data-r="heading"][style*="font-size: 3"] {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Two-column splits (landing hero, login) stack. */
+  [data-r="artboard"] [style*="gap: 60px"],
+  [data-r="artboard"] [style*="gap: 48px"] {
     flex-direction: column !important;
-    gap: 32px !important;
-  }
-
-  /* Headline sizes drawn for a 1440px canvas are too big on a phone. */
-  .artboard-viewport h1[style*="font-size: 5"] {
-    font-size: 32px !important;
-  }
-
-  .artboard-viewport h2[style*="font-size: 3"] {
-    font-size: 24px !important;
+    gap: 28px !important;
   }
 }
 
 /* The login page's dark brand panel is decoration; it costs a whole screen
-   on a phone before the form appears. */
+   before the form appears. */
 @media (max-width: 720px) {
-  .artboard-scaler[data-artboard="Login"] > div > div:first-child {
+  [data-artboard="Login"] [data-r="pinned"] {
     display: none !important;
   }
 }
 
-/* ---- the drawer toggle + scrim, injected on small screens ---- */
+/* ---------- drawer toggle + scrim ---------- */
 .artboard-navtoggle {
   display: none;
   position: fixed;
@@ -154,20 +229,9 @@
 }
 
 @media (max-width: 900px) {
-  .artboard-viewport .artboard-navtoggle {
+  /* Only pages that actually have a sidebar get a toggle. */
+  .artboard-viewport:has([data-r="sidebar"]) .artboard-navtoggle {
     display: flex;
-  }
-
-  /* The landing and login pages carry no sidebar, so there is nothing for the
-     toggle to open. */
-  .artboard-viewport:has([data-artboard="Landing"]) .artboard-navtoggle,
-  .artboard-viewport:has([data-artboard="Login"]) .artboard-navtoggle {
-    display: none;
-  }
-
-  /* Clear the floating toggle so it never sits on top of the page title. */
-  .artboard-scaler header {
-    padding-left: 64px !important;
   }
 
   .artboard-viewport[data-nav="open"] > .artboard-scrim {
