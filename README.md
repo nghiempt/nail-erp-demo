@@ -1,12 +1,11 @@
 # NailSpace — demo quản lý tiệm nail
 
 Website demo (UI only) cho hệ thống quản lý tiệm nail, dựng bằng Next.js từ
-các file thiết kế HTML có sẵn trong repo.
+các file thiết kế HTML có sẵn.
 
 ## Chạy local
 
 ```bash
-cd web
 npm install
 npm run dev
 ```
@@ -32,23 +31,37 @@ Mở http://localhost:3000
 
 ## Cấu trúc
 
-Các thư mục `*-html/` ở gốc repo là **file thiết kế gốc** (design mockup dạng
-`x-dc` template). Chúng là nguồn dữ liệu, không phải code chạy.
-
-`scripts/convert.mjs` đọc các file đó, chạy phần `renderVals()` của thiết kế,
-expand template (`{{...}}`, `<sc-for>`, `<sc-if>`) thành HTML tĩnh và đổi link
-`*.dc.html` thành route Next.js. Kết quả ghi vào `web/src/generated/`.
-
-Script này chạy tự động trong `npm run build`. Muốn chạy riêng:
-
-```bash
-node scripts/convert.mjs
+```
+designs/          file thiết kế gốc (nguồn dữ liệu, không phải code chạy)
+scripts/
+  convert.mjs     sinh trang Next.js từ designs/
+src/
+  app/            routes
+  components/     Artboard
+  generated/      HTML sinh ra tự động — KHÔNG sửa tay
 ```
 
-> Sửa thiết kế thì sửa file `*.dc.html` rồi chạy lại converter —
-> **không sửa tay** trong `web/src/generated/`.
+`designs/` chứa thiết kế dạng `x-dc` template. `scripts/convert.mjs` đọc
+chúng, chạy phần `renderVals()` của thiết kế, expand template (`{{...}}`,
+`<sc-for>`, `<sc-if>`) thành HTML tĩnh, gắn nhãn vai trò cho từng phần tử
+(dùng cho responsive) và đổi link `*.dc.html` thành route Next.js.
+
+Script chạy tự động trong `npm run build`. Chạy riêng:
+
+```bash
+npm run convert
+```
+
+> Sửa thiết kế thì sửa file trong `designs/` rồi chạy lại converter —
+> **không sửa tay** trong `src/generated/`.
+
+## Responsive
+
+Desktop từ 1440px giữ nguyên 100% như thiết kế. Dưới mức đó
+`src/app/responsive.css` reflow lại: sidebar thành drawer, grid co về 1 cột,
+bảng cuộn ngang, panel phải xuống dưới.
 
 ## Deploy
 
-Repo đã có `vercel.json`. Import repo vào Vercel là deploy được ngay,
-không cần cấu hình thêm.
+Import repo vào Vercel là xong — Next.js ở thư mục gốc nên Vercel tự nhận,
+không cần cấu hình gì thêm.

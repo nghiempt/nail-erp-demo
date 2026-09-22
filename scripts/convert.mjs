@@ -2,8 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 
-const SRC = '/Users/nghiempt/Documents/sins-nail-erp-demo';
-const OUT = path.join(SRC, 'web');
+// Resolve from this file so the build works wherever the repo is checked out.
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const SRC = path.join(ROOT, 'designs');
+const OUT = ROOT;
 
 const ROUTES = {
   'Landing.dc.html': '/',
@@ -322,5 +324,4 @@ export default function Page() {
 `);
   console.log(p.route, '->', name, p.html.length, 'bytes');
 }
-fs.writeFileSync(path.join(OUT, 'pages.json'), JSON.stringify(pages.map(({ route, title, base }) => ({ route, title, base })), null, 2));
 console.log('global css sample:\n', pages[0].globalCss.trim().slice(0, 300));
