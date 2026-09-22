@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Tạo đơn hàng tại quầy</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F5F6F8; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; box-sizing: border-box; display: flex; overflow: hidden; background: #F5F6F8;">
+
+  <aside style="width: 248px; flex-shrink: 0; height: 100%; background: #191B21; box-sizing: border-box; padding: 22px 14px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;">N</div>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; letter-spacing: -0.015em;">NailSpace</div>
+        <div style="font-size: 11px; color: #8B92A0; margin-top: 1px;">Nail Studio Hạ Vy</div>
+      </div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px;">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+        <a href="{{item.href}}" style="display: flex; align-items: center; gap: 11px; height: 42px; padding: 0 12px; border-radius: 10px; font-size: 13.5px; font-weight: {{item.weight}}; color: {{item.color}}; background: {{item.bg}};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+          <span style="flex-grow: 1;">{{item.label}}</span>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; background: #22242B;">
+      <div style="width: 34px; height: 34px; border-radius: 50%; background: #34373F; color: #C9CEDA; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">TM</div>
+      <div style="flex-grow: 1;">
+        <div style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Trần Minh Thư</div>
+        <div style="font-size: 11px; color: #8B92A0;">Quản lý ca</div>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+    <header style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 14px; padding: 0 26px; box-sizing: border-box;">
+      <a href="DonHang.dc.html" aria-label="Quay lại danh sách đơn" style="width: 38px; height: 38px; border-radius: 10px; border: 1px solid #E4E7EC; color: #454B57; display: flex; align-items: center; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 19l-7-7 7-7"></path></svg>
+      </a>
+      <div>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;">Tạo đơn mới</h1>
+        <div style="font-size: 12px; color: #737A88; margin-top: 2px;">Ca chiều · quầy lễ tân · mã tạm #1054</div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Lưu nháp</button>
+    </header>
+
+    <div style="flex-grow: 1; padding: 20px 26px 22px; box-sizing: border-box; display: flex; gap: 16px; overflow: hidden;">
+
+      <section style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+
+        <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Khách hàng</h2>
+            <div style="flex-grow: 1;"></div>
+            <a href="KhachHang.dc.html" style="font-size: 13px; font-weight: 600;">Tạo khách mới →</a>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 7px;">
+              <label for="sdt" style="font-size: 12.5px; font-weight: 600; color: #2B303A;">Số điện thoại khách</label>
+              <input id="sdt" name="sdt" type="tel" value="0977 402 165" style="height: 46px; border-radius: 11px; border: 1px solid #D3D8E0; background: #FFFFFF; padding: 0 14px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #14161A; box-sizing: border-box;">
+            </div>
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 7px;">
+              <label for="ten" style="font-size: 12.5px; font-weight: 600; color: #2B303A;">Tên khách</label>
+              <input id="ten" name="ten" type="text" value="Trịnh Mỹ Duyên" style="height: 46px; border-radius: 11px; border: 1px solid #D3D8E0; background: #FFFFFF; padding: 0 14px; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 14px; color: #14161A; box-sizing: border-box;">
+            </div>
+            <div style="width: 268px; display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-size: 12.5px; font-weight: 600; color: #2B303A;">Hồ sơ đã có</span>
+              <div style="height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 11px; background: #E4F3EB; box-sizing: border-box;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F7A4D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span style="font-size: 12.5px; color: #0F7A4D; font-weight: 600;">Thành viên bạc · 8 lần ghé · 420 điểm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; min-height: 0;">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 18px 20px 14px;">
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Chọn dịch vụ</h2>
+            <span style="font-size: 12.5px; color: #737A88;">Bấm vào thẻ để thêm vào đơn</span>
+          </div>
+          <div style="display: flex; gap: 8px; padding: 0 20px 14px;">
+            <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+              <button type="button" onClick="{{c.pick}}" style="height: 34px; padding: 0 14px; border-radius: 9px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.color}}; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;">{{c.label}}</button>
+            </sc-for>
+          </div>
+          <div style="flex-grow: 1; padding: 0 20px 20px; overflow: hidden;">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+              <sc-for list="{{catalog}}" as="s" hint-placeholder-count="9">
+                <button type="button" onClick="{{s.add}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; border-radius: 13px; border: 1px solid {{s.border}}; background: {{s.bg}}; text-align: left; font-family: 'Be Vietnam Pro', system-ui, sans-serif; cursor: pointer;">
+                  <span style="display: flex; align-items: center; gap: 8px; width: 100%;">
+                    <span style="font-size: 13.5px; font-weight: 600; color: #14161A; flex-grow: 1;">{{s.name}}</span>
+                    <sc-if value="{{s.qty}}" hint-placeholder-val="{{true}}">
+                      <span style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 11.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">{{s.qty}}</span>
+                    </sc-if>
+                  </span>
+                  <span style="font-size: 12px; color: #8B92A0;">{{s.meta}}</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600; color: #14161A;">{{s.priceText}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside style="width: 412px; flex-shrink: 0; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="padding: 18px 20px 14px; border-bottom: 1px solid #EEF0F4; display: flex; align-items: center; gap: 10px;">
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700;">Đơn đang tạo</h2>
+          <span style="padding: 3px 9px; border-radius: 999px; background: #F2F3F6; color: #5B6270; font-size: 11.5px; font-weight: 600;">{{cartCount}} dịch vụ</span>
+        </div>
+
+        <div style="flex-grow: 1; padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; overflow: hidden;">
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{isEmpty}}" hint-placeholder-val="{{false}}">
+              <div style="padding: 22px; border-radius: 12px; border: 1px dashed #D3D8E0; text-align: center; font-size: 13px; color: #8B92A0;">Chưa có dịch vụ nào. Chọn từ danh sách bên trái.</div>
+            </sc-if>
+            <sc-for list="{{cart}}" as="c" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0;">
+                  <span style="font-size: 13.5px; font-weight: 600;">{{c.name}}</span>
+                  <span style="font-size: 11.5px; color: #8B92A0;">{{c.meta}}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <button type="button" onClick="{{c.dec}}" aria-label="Bớt một" style="width: 28px; height: 28px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; font-size: 15px; line-height: 1; cursor: pointer;">−</button>
+                  <span style="width: 20px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">{{c.qty}}</span>
+                  <button type="button" onClick="{{c.inc}}" aria-label="Thêm một" style="width: 28px; height: 28px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; font-size: 15px; line-height: 1; cursor: pointer;">+</button>
+                </div>
+                <span style="width: 92px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">{{c.lineText}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12.5px; font-weight: 600; color: #2B303A;">Thợ phụ trách</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{staffOptions}}" as="s" hint-placeholder-count="4">
+                <button type="button" onClick="{{s.pick}}" style="display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.color}}; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;">
+                  <span style="width: 22px; height: 22px; border-radius: 50%; background: #F0F1F5; color: #4A5160; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{s.initials}}</span>
+                  {{s.name}}
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12.5px; font-weight: 600; color: #2B303A;">Hình thức thanh toán</span>
+            <div style="display: flex; gap: 8px;">
+              <sc-for list="{{payMethods}}" as="p" hint-placeholder-count="3">
+                <button type="button" onClick="{{p.pick}}" style="flex-grow: 1; height: 42px; border-radius: 10px; border: 1px solid {{p.border}}; background: {{p.bg}}; color: {{p.color}}; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;">{{p.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 9px; padding: 14px; border-radius: 12px; background: #F8F9FB;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="flex-grow: 1; font-size: 13px; color: #454B57;">Tạm tính</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">{{subtotalText}}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="flex-grow: 1; font-size: 13px; color: #0F7A4D;">Ưu đãi thành viên bạc (5%)</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #0F7A4D;">{{discountText}}</span>
+            </div>
+            <div style="height: 1px; background: #E4E7EC;"></div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="flex-grow: 1; font-size: 14px; font-weight: 700;">Khách phải trả</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; letter-spacing: -0.02em;">{{totalText}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 16px 20px; border-top: 1px solid #EEF0F4; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input id="zalo" name="zalo" type="checkbox" checked="" style="width: 17px; height: 17px; accent-color: {{accent}}; margin: 0;">
+            <label for="zalo" style="font-size: 13px; color: #454B57;">Gửi tin cảm ơn qua Zalo OA sau khi thanh toán</label>
+          </div>
+          <button type="button" style="height: 48px; border-radius: 11px; border: none; background: {{accent}}; color: #FFFFFF; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer;">Tạo đơn và bắt đầu làm</button>
+          <button type="button" style="height: 44px; border-radius: 11px; border: 1px solid #D3D8E0; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Tạo và thanh toán luôn</button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cat: 'all', cart: { s1: 1, s6: 6 }, staff: 'LH', pay: 'transfer' };
+  }
+
+  services() {
+    return [
+      { id: 's1', name: 'Đắp gel 2 tay', meta: 'Dáng almond · 90 phút', price: 520000, cat: 'dap' },
+      { id: 's2', name: 'Đắp bột 2 tay', meta: 'Dáng vuông hoặc oval · 90 phút', price: 480000, cat: 'dap' },
+      { id: 's3', name: 'Sơn gel màu trơn', meta: '2 tay · 55 phút', price: 180000, cat: 'son' },
+      { id: 's4', name: 'Sơn gel ombre', meta: '2 tay · 70 phút', price: 260000, cat: 'son' },
+      { id: 's5', name: 'Sơn gel chân', meta: '45 phút', price: 160000, cat: 'son' },
+      { id: 's6', name: 'Vẽ hoa thủ công', meta: 'Tính theo móng · 15 phút/móng', price: 60000, cat: 'art' },
+      { id: 's7', name: 'Đính đá / charm', meta: 'Tính theo móng', price: 35000, cat: 'art' },
+      { id: 's8', name: 'Chăm sóc tay', meta: 'Ngâm, tẩy da chết, massage · 45 phút', price: 150000, cat: 'spa' },
+      { id: 's9', name: 'Tháo bộ cũ', meta: 'Miễn phí khi làm bộ mới', price: 0, cat: 'khac' },
+    ];
+  }
+
+  fmt(n) {
+    return n.toLocaleString('vi-VN') + 'đ';
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    const cart = this.state.cart;
+    const all = this.services();
+
+    const catDefs = [
+      { key: 'all', label: 'Tất cả' },
+      { key: 'son', label: 'Sơn gel' },
+      { key: 'dap', label: 'Đắp bột / gel' },
+      { key: 'art', label: 'Nail art' },
+      { key: 'spa', label: 'Chăm sóc' },
+    ];
+
+    const visible = this.state.cat === 'all' ? all : all.filter((s) => s.cat === this.state.cat);
+
+    const lines = all.filter((s) => cart[s.id] > 0).map((s) => ({
+      name: s.name,
+      meta: s.meta,
+      qty: cart[s.id],
+      lineText: this.fmt(s.price * cart[s.id]),
+      inc: () => this.setState({ cart: { ...cart, [s.id]: cart[s.id] + 1 } }),
+      dec: () => {
+        const next = { ...cart };
+        if (next[s.id] > 1) { next[s.id] = next[s.id] - 1; } else { delete next[s.id]; }
+        this.setState({ cart: next });
+      },
+    }));
+
+    const subtotal = all.reduce((sum, s) => sum + s.price * (cart[s.id] || 0), 0);
+    const discount = Math.round(subtotal * 0.05);
+
+    const staffDefs = [
+      { id: 'NL', name: 'Ngọc Lan' },
+      { id: 'PQ', name: 'Quỳnh Như' },
+      { id: 'LH', name: 'Hồng Hạnh' },
+      { id: 'VA', name: 'Thuý An' },
+    ];
+    const payDefs = [
+      { id: 'cash', label: 'Tiền mặt' },
+      { id: 'transfer', label: 'Chuyển khoản' },
+      { id: 'card', label: 'Thẻ' },
+    ];
+
+    return {
+      accent,
+      nav: [
+        { label: 'Tổng quan', href: 'Main.dc.html', d: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' },
+        { label: 'Đơn hàng', href: 'DonHang.dc.html', active: true, d: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6' },
+        { label: 'Dịch vụ', href: 'DichVu.dc.html', d: 'M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4zM6 17h5M18 15v4' },
+        { label: 'Khách hàng', href: 'KhachHang.dc.html', d: 'M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4' },
+        { label: 'Nhân viên', href: 'NhanVien.dc.html', d: 'M5 5h14v14H5zM9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M8 16c.6-1.4 2-2.1 3-2.1s2.4.7 3 2.1M15 9h2M15 12h2' },
+        { label: 'Gallery', href: 'Gallery.dc.html', d: 'M4 5h16v14H4zM4 15l4-4 3 3 3-3 6 6M15 9h.01' },
+        { label: 'Zalo OA', href: 'ZaloOA.dc.html', d: 'M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z' },
+      ].map((n) => ({
+        ...n,
+        bg: n.active ? '#2A2D36' : 'transparent',
+        color: n.active ? '#FFFFFF' : '#9AA1AF',
+        weight: n.active ? '600' : '500',
+      })),
+      cats: catDefs.map((c) => {
+        const on = c.key === this.state.cat;
+        return {
+          label: c.label,
+          bg: on ? '#191B21' : '#FFFFFF',
+          color: on ? '#FFFFFF' : '#5B6270',
+          border: on ? '#191B21' : '#E4E7EC',
+          pick: () => this.setState({ cat: c.key }),
+        };
+      }),
+      catalog: visible.map((s) => {
+        const qty = cart[s.id] || 0;
+        return {
+          name: s.name,
+          meta: s.meta,
+          priceText: s.price === 0 ? 'Miễn phí' : this.fmt(s.price),
+          qty: qty > 0 ? String(qty) : '',
+          bg: qty > 0 ? '#F8F8FE' : '#FFFFFF',
+          border: qty > 0 ? accent : '#E4E7EC',
+          add: () => this.setState({ cart: { ...cart, [s.id]: qty + 1 } }),
+        };
+      }),
+      cart: lines,
+      cartCount: String(lines.length),
+      isEmpty: lines.length === 0,
+      subtotalText: this.fmt(subtotal),
+      discountText: '−' + this.fmt(discount),
+      totalText: this.fmt(subtotal - discount),
+      staffOptions: staffDefs.map((s) => {
+        const on = s.id === this.state.staff;
+        return {
+          name: s.name,
+          initials: s.id,
+          bg: on ? '#F8F8FE' : '#FFFFFF',
+          border: on ? accent : '#E4E7EC',
+          color: on ? '#14161A' : '#5B6270',
+          pick: () => this.setState({ staff: s.id }),
+        };
+      }),
+      payMethods: payDefs.map((p) => {
+        const on = p.id === this.state.pay;
+        return {
+          label: p.label,
+          bg: on ? '#F8F8FE' : '#FFFFFF',
+          border: on ? accent : '#E4E7EC',
+          color: on ? '#14161A' : '#5B6270',
+          pick: () => this.setState({ pay: p.id }),
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Danh sách khách hàng</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F5F6F8; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 1040px; box-sizing: border-box; display: flex; overflow: hidden; background: #F5F6F8;">
+
+  <aside style="width: 248px; flex-shrink: 0; height: 100%; background: #191B21; box-sizing: border-box; padding: 22px 14px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;">N</div>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; letter-spacing: -0.015em;">NailSpace</div>
+        <div style="font-size: 11px; color: #8B92A0; margin-top: 1px;">Nail Studio Hạ Vy</div>
+      </div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px;">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+        <a href="{{item.href}}" style="display: flex; align-items: center; gap: 11px; height: 42px; padding: 0 12px; border-radius: 10px; font-size: 13.5px; font-weight: {{item.weight}}; color: {{item.color}}; background: {{item.bg}};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+          <span style="flex-grow: 1;">{{item.label}}</span>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; background: #22242B;">
+      <div style="width: 34px; height: 34px; border-radius: 50%; background: #34373F; color: #C9CEDA; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">HV</div>
+      <div style="flex-grow: 1;">
+        <div style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Trần Hạ Vy</div>
+        <div style="font-size: 11px; color: #8B92A0;">Chủ tiệm</div>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+    <header style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 14px; padding: 0 26px; box-sizing: border-box;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;">Khách hàng</h1>
+        <div style="font-size: 12px; color: #737A88; margin-top: 2px;">1.284 hồ sơ · 182 khách chưa quay lại trên 60 ngày</div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 9px; width: 268px; height: 40px; border-radius: 10px; border: 1px solid #E4E7EC; background: #F8F9FB; padding: 0 12px; box-sizing: border-box;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B92A0" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="search" aria-label="Tìm khách hàng" placeholder="Tên hoặc số điện thoại" style="flex-grow: 1; border: none; outline: none; background: transparent; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; color: #14161A;">
+      </div>
+      <a href="ZaloOA.dc.html" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; box-sizing: border-box;">Gửi tin hàng loạt</a>
+      <button type="button" style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 10px; border: none; background: {{accent}}; color: #FFFFFF; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Tạo khách
+      </button>
+    </header>
+
+    <div style="flex-grow: 1; padding: 20px 26px 22px; box-sizing: border-box; display: flex; gap: 16px; overflow: hidden;">
+
+      <section style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 14px 20px; border-bottom: 1px solid #EEF0F4;">
+          <sc-for list="{{segments}}" as="s" hint-placeholder-count="4">
+            <span style="display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 13px; border-radius: 9px; background: {{s.bg}}; color: {{s.color}}; font-size: 13px; font-weight: 600;">
+              {{s.label}}
+              <span style="padding: 1px 7px; border-radius: 999px; background: {{s.countBg}}; color: {{s.countColor}}; font-size: 11.5px;">{{s.count}}</span>
+            </span>
+          </sc-for>
+          <div style="flex-grow: 1;"></div>
+          <span style="font-size: 12.5px; color: #737A88;">Sắp xếp: Ghé gần nhất</span>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+          <thead>
+            <tr style="background: #F8F9FB;">
+              <th style="text-align: left; padding: 11px 20px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Khách hàng</th>
+              <th style="text-align: left; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Hạng</th>
+              <th style="text-align: right; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Lần ghé</th>
+              <th style="text-align: right; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Tổng chi tiêu</th>
+              <th style="text-align: left; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Thợ quen</th>
+              <th style="text-align: left; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Ghé gần nhất</th>
+              <th style="text-align: right; padding: 11px 20px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #EEF0F4;">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="9">
+              <tr style="border-bottom: 1px solid #F1F3F6; background: {{r.rowBg}};">
+                <td style="padding: 11px 20px;">
+                  <div style="display: flex; align-items: center; gap: 11px;">
+                    <span style="width: 34px; height: 34px; border-radius: 50%; background: #F0F1F5; color: #4A5160; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">{{r.initials}}</span>
+                    <span style="display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-weight: 600;">{{r.name}}</span>
+                      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #8B92A0;">{{r.phone}}</span>
+                    </span>
+                  </div>
+                </td>
+                <td style="padding: 11px 14px;">
+                  <span style="padding: 4px 10px; border-radius: 999px; background: {{r.tierBg}}; color: {{r.tierColor}}; font-size: 11.5px; font-weight: 600;">{{r.tier}}</span>
+                </td>
+                <td style="padding: 11px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace;">{{r.visits}}</td>
+                <td style="padding: 11px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600;">{{r.spend}}</td>
+                <td style="padding: 11px 14px; color: #454B57;">{{r.staff}}</td>
+                <td style="padding: 11px 14px; color: {{r.lastColor}};">{{r.last}}</td>
+                <td style="padding: 11px 20px;">
+                  <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                    <a href="ZaloOA.dc.html" aria-label="Nhắn Zalo cho khách" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E4E7EC; color: #454B57; display: flex; align-items: center; justify-content: center;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z"></path></svg>
+                    </a>
+                    <a href="TaoDon.dc.html" aria-label="Tạo đơn cho khách" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E4E7EC; color: #454B57; display: flex; align-items: center; justify-content: center;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+
+        <div style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid #EEF0F4;">
+          <span style="font-size: 12.5px; color: #737A88;">Hiển thị 9 trên 1.284 khách</span>
+          <div style="flex-grow: 1;"></div>
+          <button type="button" style="height: 34px; padding: 0 13px; border-radius: 9px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #737A88; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer;">Trước</button>
+          <button type="button" style="height: 34px; padding: 0 13px; border-radius: 9px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer;">Sau</button>
+        </div>
+      </section>
+
+      <aside style="width: 366px; flex-shrink: 0; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="padding: 20px; border-bottom: 1px solid #EEF0F4; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="width: 48px; height: 48px; border-radius: 50%; background: #F0F1F5; color: #4A5160; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600;">TD</span>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16.5px; font-weight: 700;">Trịnh Mỹ Duyên</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #737A88;">0977 402 165</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <span style="padding: 5px 11px; border-radius: 999px; background: #EEEBFD; color: #4836C4; font-size: 11.5px; font-weight: 600;">Thành viên bạc</span>
+            <span style="padding: 5px 11px; border-radius: 999px; background: #F2F3F6; color: #5B6270; font-size: 11.5px; font-weight: 600;">Đang có đơn #1047</span>
+          </div>
+        </div>
+
+        <div style="flex-grow: 1; padding: 18px 20px; display: flex; flex-direction: column; gap: 18px; overflow: hidden;">
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+            <sc-for list="{{profileStats}}" as="p" hint-placeholder-count="3">
+              <div style="padding: 12px; border-radius: 12px; background: #F8F9FB; display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600;">{{p.value}}</span>
+                <span style="font-size: 11.5px; color: #737A88;">{{p.label}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <span style="font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em;">Lịch sử gần đây</span>
+            <sc-for list="{{history}}" as="h" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 11px; padding-bottom: 11px; border-bottom: 1px solid #F1F3F6;">
+                <span style="width: 9px; height: 9px; border-radius: 3px; background: {{h.dot}}; flex-shrink: 0;"></span>
+                <span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0;">
+                  <span style="font-size: 13px; font-weight: 500;">{{h.service}}</span>
+                  <span style="font-size: 11.5px; color: #8B92A0;">{{h.date}} · {{h.staff}}</span>
+                </span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600;">{{h.amount}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em;">Ghi chú của tiệm</span>
+            <div style="padding: 13px; border-radius: 12px; background: #F8F9FB; font-size: 13px; line-height: 1.6; color: #454B57;">Thích dáng almond, màu trung tính. Thường đặt chiều thứ Bảy và hay chọn thợ Hồng Hạnh.</div>
+          </div>
+        </div>
+
+        <div style="padding: 16px 20px; border-top: 1px solid #EEF0F4; display: flex; gap: 10px;">
+          <a href="TaoDon.dc.html" style="flex-grow: 1; height: 44px; border-radius: 11px; background: {{accent}}; color: #FFFFFF; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; justify-content: center;">Tạo đơn</a>
+          <a href="ZaloOA.dc.html" style="flex-grow: 1; height: 44px; border-radius: 11px; border: 1px solid #D3D8E0; color: #14161A; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">Nhắn Zalo</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    const tiers = {
+      gold: { label: 'Vàng', bg: '#FBF0DC', color: '#8E5A04' },
+      silver: { label: 'Bạc', bg: '#EEEBFD', color: '#4836C4' },
+      new: { label: 'Mới', bg: '#E4F3EB', color: '#0F7A4D' },
+      none: { label: 'Vãng lai', bg: '#F2F3F6', color: '#5B6270' },
+    };
+    const mk = (initials, name, phone, tier, visits, spend, staff, last, lastColor, rowBg) => ({
+      initials, name, phone, visits, spend, staff, last, lastColor,
+      rowBg: rowBg || '#FFFFFF',
+      tier: tiers[tier].label, tierBg: tiers[tier].bg, tierColor: tiers[tier].color,
+    });
+    return {
+      accent,
+      nav: [
+        { label: 'Tổng quan', href: 'Main.dc.html', d: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' },
+        { label: 'Đơn hàng', href: 'DonHang.dc.html', d: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6' },
+        { label: 'Dịch vụ', href: 'DichVu.dc.html', d: 'M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4zM6 17h5M18 15v4' },
+        { label: 'Khách hàng', href: 'KhachHang.dc.html', active: true, d: 'M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4' },
+        { label: 'Nhân viên', href: 'NhanVien.dc.html', d: 'M5 5h14v14H5zM9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M8 16c.6-1.4 2-2.1 3-2.1s2.4.7 3 2.1M15 9h2M15 12h2' },
+        { label: 'Gallery', href: 'Gallery.dc.html', d: 'M4 5h16v14H4zM4 15l4-4 3 3 3-3 6 6M15 9h.01' },
+        { label: 'Zalo OA', href: 'ZaloOA.dc.html', d: 'M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z' },
+      ].map((n) => ({
+        ...n,
+        bg: n.active ? '#2A2D36' : 'transparent',
+        color: n.active ? '#FFFFFF' : '#9AA1AF',
+        weight: n.active ? '600' : '500',
+      })),
+      segments: [
+        { label: 'Tất cả', count: '1.284', bg: '#191B21', color: '#FFFFFF', countBg: '#3A3D47', countColor: '#FFFFFF' },
+        { label: 'Thành viên', count: '406', bg: 'transparent', color: '#5B6270', countBg: '#F2F3F6', countColor: '#737A88' },
+        { label: 'Khách mới 30 ngày', count: '97', bg: 'transparent', color: '#5B6270', countBg: '#F2F3F6', countColor: '#737A88' },
+        { label: 'Lâu chưa quay lại', count: '182', bg: 'transparent', color: '#5B6270', countBg: '#F2F3F6', countColor: '#737A88' },
+      ],
+      rows: [
+        mk('TD', 'Trịnh Mỹ Duyên', '0977 402 165', 'silver', '8', '4.36 tr', 'Hồng Hạnh', 'Hôm nay', '#14161A', '#F8F8FE'),
+        mk('BY', 'Bùi Hải Yến', '0961 330 472', 'gold', '21', '12.80 tr', 'Hồng Hạnh', 'Hôm nay', '#14161A'),
+        mk('PK', 'Phan Kiều Anh', '0912 668 040', 'silver', '11', '3.92 tr', 'Ngọc Lan', 'Hôm nay', '#14161A'),
+        mk('HM', 'Hồ Ngọc Mai', '0908 221 730', 'gold', '26', '16.40 tr', 'Quỳnh Như', '3 ngày trước', '#454B57'),
+        mk('DL', 'Đặng Thuỳ Linh', '0932 507 188', 'silver', '9', '2.74 tr', 'Thuý An', '6 ngày trước', '#454B57'),
+        mk('LN', 'Lý Bảo Ngọc', '0904 776 512', 'silver', '7', '3.10 tr', 'Hồng Hạnh', '12 ngày trước', '#454B57'),
+        mk('VM', 'Vũ Minh Châu', '0918 204 663', 'new', '2', '640 ngh', 'Quỳnh Như', '19 ngày trước', '#454B57'),
+        mk('NT', 'Ngô Thanh Vy', '0945 811 226', 'silver', '14', '6.05 tr', 'Ngọc Lan', '68 ngày trước', '#8E5A04'),
+        mk('TT', 'Tô Thanh Trúc', '0987 145 903', 'none', '3', '450 ngh', 'Không cố định', '94 ngày trước', '#8E5A04'),
+      ],
+      profileStats: [
+        { value: '8', label: 'Lần ghé' },
+        { value: '4.36 tr', label: 'Tổng chi tiêu' },
+        { value: '420', label: 'Điểm tích luỹ' },
+      ],
+      history: [
+        { service: 'Đắp gel + vẽ hoa 6 móng', date: '22/09/2026', staff: 'Hồng Hạnh', amount: '890.000đ', dot: accent },
+        { service: 'Sơn gel màu trơn', date: '30/08/2026', staff: 'Hồng Hạnh', amount: '180.000đ', dot: '#14915C' },
+        { service: 'Combo tay và chân', date: '02/08/2026', staff: 'Quỳnh Như', amount: '890.000đ', dot: '#14915C' },
+        { service: 'Sơn gel ombre', date: '11/07/2026', staff: 'Hồng Hạnh', amount: '260.000đ', dot: '#14915C' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

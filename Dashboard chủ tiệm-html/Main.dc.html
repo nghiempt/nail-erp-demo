@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Tổng quan — Chủ tiệm</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F5F6F8; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 1180px; box-sizing: border-box; display: flex; overflow: hidden; background: #F5F6F8;">
+
+  <aside style="width: 248px; flex-shrink: 0; height: 100%; background: #191B21; box-sizing: border-box; padding: 22px 14px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;">N</div>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; letter-spacing: -0.015em;">NailSpace</div>
+        <div style="font-size: 11px; color: #8B92A0; margin-top: 1px;">Nail Studio Hạ Vy</div>
+      </div>
+    </div>
+
+    <nav style="display: flex; flex-direction: column; gap: 2px;">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+        <a href="{{item.href}}" style="display: flex; align-items: center; gap: 11px; height: 42px; padding: 0 12px; border-radius: 10px; font-size: 13.5px; font-weight: {{item.weight}}; color: {{item.color}}; background: {{item.bg}};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+          <span style="flex-grow: 1;">{{item.label}}</span>
+          <sc-if value="{{item.badge}}" hint-placeholder-val="{{true}}">
+            <span style="padding: 2px 7px; border-radius: 999px; background: #34373F; color: #DDE1E8; font-size: 11px; font-weight: 600;">{{item.badge}}</span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <div style="padding: 14px; border-radius: 12px; background: #22242B; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: #FFFFFF;">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: #14915C;"></span>
+          Ca chiều đang mở
+        </div>
+        <div style="font-size: 11.5px; line-height: 1.5; color: #99A0AE;">4/6 thợ đã chấm công · mở lúc 13:02</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; background: #22242B;">
+        <div style="width: 34px; height: 34px; border-radius: 50%; background: #34373F; color: #C9CEDA; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">HV</div>
+        <div style="flex-grow: 1;">
+          <div style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Trần Hạ Vy</div>
+          <div style="font-size: 11px; color: #8B92A0;">Chủ tiệm</div>
+        </div>
+        <a href="Login.dc.html" aria-label="Đăng xuất" style="width: 30px; height: 30px; border-radius: 8px; color: #8B92A0; display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 17l5-5-5-5M20 12H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+    <header style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 16px; padding: 0 26px; box-sizing: border-box;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;">Tổng quan tiệm</h1>
+        <div style="font-size: 12px; color: #737A88; margin-top: 2px;">Thứ Ba, 22/09/2026 · cập nhật 16:41</div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 9px; width: 260px; height: 40px; border-radius: 10px; border: 1px solid #E4E7EC; background: #F8F9FB; padding: 0 12px; box-sizing: border-box;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B92A0" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="search" aria-label="Tìm khách hàng hoặc đơn hàng" placeholder="Tìm khách, số điện thoại, mã đơn" style="flex-grow: 1; border: none; outline: none; background: transparent; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; color: #14161A;">
+      </div>
+      <button type="button" aria-label="Thông báo" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 9a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7M13.7 20a2 2 0 0 1-3.4 0"></path></svg>
+      </button>
+      <a href="TaoDon.dc.html" style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 13.5px; font-weight: 600;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Tạo đơn
+      </a>
+    </header>
+
+    <div style="flex-grow: 1; padding: 22px 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; overflow: hidden;">
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; flex-shrink: 0;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 14px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <span style="font-size: 12.5px; color: #737A88; font-weight: 500;">{{k.label}}</span>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 27px; font-weight: 600; letter-spacing: -0.03em;">{{k.value}}</div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="display: inline-flex; align-items: center; gap: 3px; padding: 3px 8px; border-radius: 999px; background: {{k.deltaBg}}; color: {{k.deltaColor}}; font-size: 11.5px; font-weight: 600;">{{k.delta}}</span>
+              <span style="font-size: 11.5px; color: #8B92A0;">{{k.note}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 16px; flex-shrink: 0;">
+
+        <section style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 20px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div>
+              <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Doanh thu 14 ngày gần nhất</h2>
+              <div style="font-size: 12px; color: #737A88; margin-top: 3px;">Đơn đã hoàn tất, chưa trừ hoa hồng thợ</div>
+            </div>
+            <div style="flex-grow: 1;"></div>
+            <div style="display: flex; gap: 6px; padding: 3px; border-radius: 9px; background: #F2F3F6;">
+              <sc-for list="{{ranges}}" as="r" hint-placeholder-count="3">
+                <span style="padding: 6px 12px; border-radius: 7px; font-size: 12.5px; font-weight: 600; color: {{r.color}}; background: {{r.bg}};">{{r.label}}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; letter-spacing: -0.03em;">214.900.000đ</span>
+            <span style="font-size: 12.5px; color: #737A88;">tổng 14 ngày · trung bình 15.350.000đ/ngày</span>
+          </div>
+          <div style="flex-grow: 1; display: flex; align-items: stretch; gap: 9px; height: 176px;">
+            <sc-for list="{{revBars}}" as="b" hint-placeholder-count="14">
+              <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+                <div style="flex-grow: 1; display: flex; align-items: flex-end;">
+                  <div style="width: 100%; height: {{b.h}}; background: {{b.fill}}; border-radius: 4px 4px 0 0;"></div>
+                </div>
+                <div style="font-size: 10.5px; color: {{b.labelColor}}; text-align: center; font-weight: {{b.labelWeight}};">{{b.label}}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="height: 1px; background: #E4E7EC; margin-top: -8px;"></div>
+        </section>
+
+        <section style="width: 342px; flex-shrink: 0; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 20px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Cơ cấu doanh thu theo nhóm</h2>
+            <div style="font-size: 12px; color: #737A88; margin-top: 3px;">Tháng 9/2026</div>
+          </div>
+          <div style="display: flex; gap: 2px; height: 14px; border-radius: 7px; overflow: hidden;">
+            <sc-for list="{{mix}}" as="m" hint-placeholder-count="4">
+              <div style="width: {{m.w}}; background: {{m.color}};"></div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <sc-for list="{{mix}}" as="m" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="width: 10px; height: 10px; border-radius: 3px; background: {{m.color}}; flex-shrink: 0;"></span>
+                <span style="flex-grow: 1; font-size: 13.5px; color: #2B303A;">{{m.name}}</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">{{m.pct}}</span>
+                <span style="width: 92px; text-align: right; font-size: 12.5px; color: #737A88;">{{m.amount}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid #EEF0F4; font-size: 12.5px; line-height: 1.55; color: #454B57;">Nail art vẽ tay chiếm 18% doanh thu nhưng chỉ 9% số đơn — đơn giá cao nhất trong 4 nhóm.</div>
+        </section>
+
+      </div>
+
+      <div style="display: flex; gap: 16px; flex-grow: 1; min-height: 0;">
+
+        <section style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 16px; padding: 18px 22px 14px;">
+            <div>
+              <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Hiệu suất thợ trong tháng</h2>
+              <div style="font-size: 12px; color: #737A88; margin-top: 3px;">Chỉ tiêu tháng 9: 28.000.000đ doanh thu/thợ</div>
+            </div>
+            <div style="flex-grow: 1;"></div>
+            <a href="NhanVien.dc.html" style="font-size: 13px; font-weight: 600;">Quản lý nhân viên →</a>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+            <thead>
+              <tr style="background: #F8F9FB;">
+                <th style="text-align: left; padding: 10px 22px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Thợ</th>
+                <th style="text-align: right; padding: 10px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Đơn</th>
+                <th style="text-align: right; padding: 10px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Doanh thu</th>
+                <th style="text-align: left; padding: 10px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Tiến độ chỉ tiêu</th>
+                <th style="text-align: right; padding: 10px 22px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Đánh giá</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{staff}}" as="s" hint-placeholder-count="6">
+                <tr style="border-bottom: 1px solid #F1F3F6;">
+                  <td style="padding: 12px 22px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <span style="width: 30px; height: 30px; border-radius: 50%; background: #F0F1F5; color: #4A5160; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 600;">{{s.initials}}</span>
+                      <span style="display: flex; flex-direction: column;">
+                        <span style="font-weight: 600;">{{s.name}}</span>
+                        <span style="font-size: 11.5px; color: #8B92A0;">{{s.role}}</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td style="padding: 12px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace;">{{s.orders}}</td>
+                  <td style="padding: 12px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600;">{{s.revenue}}</td>
+                  <td style="padding: 12px 14px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div style="flex-grow: 1; height: 7px; border-radius: 4px; background: #EEF0F4; overflow: hidden;">
+                        <div style="width: {{s.pct}}; height: 100%; background: {{s.barColor}}; border-radius: 4px;"></div>
+                      </div>
+                      <span style="width: 38px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #454B57;">{{s.pct}}</span>
+                    </div>
+                  </td>
+                  <td style="padding: 12px 22px; text-align: right;">
+                    <span style="display: inline-flex; align-items: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="#A96C05" aria-hidden="true"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.4l6-.8z"></path></svg>
+                      {{s.rating}}
+                    </span>
+                  </td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <section style="width: 342px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+          <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Cần bạn xử lý</h2>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{todos}}" as="t" hint-placeholder-count="3">
+                <a href="{{t.href}}" style="display: flex; align-items: flex-start; gap: 11px; padding: 12px; border-radius: 11px; background: {{t.bg}}; color: #14161A;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: {{t.dot}}; flex-shrink: 0; margin-top: 5px;"></span>
+                  <span style="display: flex; flex-direction: column; gap: 3px;">
+                    <span style="font-size: 13.5px; font-weight: 600;">{{t.title}}</span>
+                    <span style="font-size: 12.5px; line-height: 1.5; color: #5B6270;">{{t.desc}}</span>
+                  </span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Zalo OA tuần này</h2>
+              <div style="flex-grow: 1;"></div>
+              <a href="ZaloOA.dc.html" style="font-size: 13px; font-weight: 600;">Mở →</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <sc-for list="{{zalo}}" as="z" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="flex-grow: 1; font-size: 13.5px; color: #2B303A;">{{z.label}}</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600;">{{z.value}}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: auto; padding: 12px; border-radius: 11px; background: #F5F6F8; font-size: 12.5px; line-height: 1.55; color: #454B57;">Tin cảm ơn sau thanh toán gửi tự động; tin khuyến mãi cần bạn duyệt trước khi gửi hàng loạt.</div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    const nav = [
+      { label: 'Tổng quan', href: 'Main.dc.html', active: true, d: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' },
+      { label: 'Đơn hàng', href: 'DonHang.dc.html', badge: '5', d: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6' },
+      { label: 'Dịch vụ', href: 'DichVu.dc.html', d: 'M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4zM6 17h5M18 15v4' },
+      { label: 'Khách hàng', href: 'KhachHang.dc.html', d: 'M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4' },
+      { label: 'Nhân viên', href: 'NhanVien.dc.html', d: 'M5 5h14v14H5zM9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M8 16c.6-1.4 2-2.1 3-2.1s2.4.7 3 2.1M15 9h2M15 12h2' },
+      { label: 'Gallery', href: 'Gallery.dc.html', d: 'M4 5h16v14H4zM4 15l4-4 3 3 3-3 6 6M15 9h.01' },
+      { label: 'Zalo OA', href: 'ZaloOA.dc.html', badge: '2', d: 'M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z' },
+    ];
+    const bars = [
+      { label: '9', v: 0.56 }, { label: '10', v: 0.62 }, { label: '11', v: 0.48 },
+      { label: '12', v: 0.71 }, { label: '13', v: 0.88 }, { label: '14', v: 0.94 },
+      { label: '15', v: 0.52 }, { label: '16', v: 0.58 }, { label: '17', v: 0.66 },
+      { label: '18', v: 0.6 }, { label: '19', v: 0.79 }, { label: '20', v: 0.97 },
+      { label: '21', v: 0.9 }, { label: '22', v: 0.74, today: true },
+    ];
+    return {
+      accent,
+      nav: nav.map((n) => ({
+        ...n,
+        bg: n.active ? '#2A2D36' : 'transparent',
+        color: n.active ? '#FFFFFF' : '#9AA1AF',
+        weight: n.active ? '600' : '500',
+      })),
+      kpis: [
+        { label: 'Doanh thu hôm nay', value: '18.450.000đ', delta: '+12%', note: 'so với thứ Ba tuần trước', deltaBg: '#E4F3EB', deltaColor: '#0F7A4D' },
+        { label: 'Đơn hoàn tất', value: '34', delta: '+5 đơn', note: '3 đơn đang làm', deltaBg: '#E4F3EB', deltaColor: '#0F7A4D' },
+        { label: 'Khách mới', value: '7', delta: '−2', note: 'trên tổng 29 lượt khách', deltaBg: '#FBF0DC', deltaColor: '#8E5A04' },
+        { label: 'Giá trị đơn trung bình', value: '543.000đ', delta: '+4%', note: 'combo kéo đơn lên', deltaBg: '#E4F3EB', deltaColor: '#0F7A4D' },
+      ],
+      ranges: [
+        { label: '14 ngày', bg: '#FFFFFF', color: '#14161A' },
+        { label: 'Tháng', bg: 'transparent', color: '#737A88' },
+        { label: 'Quý', bg: 'transparent', color: '#737A88' },
+      ],
+      revBars: bars.map((b) => ({
+        label: b.label,
+        h: Math.round(b.v * 100) + '%',
+        fill: b.today ? accent : '#9A8CEA',
+        labelColor: b.today ? '#14161A' : '#8B92A0',
+        labelWeight: b.today ? '600' : '400',
+      })),
+      mix: [
+        { name: 'Sơn gel', pct: '41%', amount: '88.1 triệu', w: '41%', color: '#5A43E0' },
+        { name: 'Đắp bột / gel', pct: '27%', amount: '58.0 triệu', w: '27%', color: '#14915C' },
+        { name: 'Nail art vẽ tay', pct: '18%', amount: '38.7 triệu', w: '18%', color: '#A96C05' },
+        { name: 'Chăm sóc tay chân', pct: '14%', amount: '30.1 triệu', w: '14%', color: '#C2407C' },
+      ],
+      staff: [
+        { initials: 'NL', name: 'Nguyễn Ngọc Lan', role: 'Thợ chính · ca sáng', orders: '96', revenue: '31.2 tr', pct: '111%', barColor: '#14915C', rating: '4.9' },
+        { initials: 'TM', name: 'Trần Minh Thư', role: 'Thợ chính · ca chiều', orders: '88', revenue: '28.6 tr', pct: '102%', barColor: '#14915C', rating: '4.8' },
+        { initials: 'PQ', name: 'Phạm Quỳnh Như', role: 'Thợ chính · ca chiều', orders: '74', revenue: '24.1 tr', pct: '86%', barColor: '#5A43E0', rating: '4.7' },
+        { initials: 'LH', name: 'Lê Hồng Hạnh', role: 'Nail art · linh hoạt', orders: '52', revenue: '22.8 tr', pct: '81%', barColor: '#5A43E0', rating: '5.0' },
+        { initials: 'VA', name: 'Võ Thuý An', role: 'Thợ phụ · ca sáng', orders: '61', revenue: '14.3 tr', pct: '51%', barColor: '#A96C05', rating: '4.6' },
+        { initials: 'DT', name: 'Đỗ Thu Trang', role: 'Thợ phụ · học việc', orders: '38', revenue: '8.9 tr', pct: '32%', barColor: '#A96C05', rating: '4.5' },
+      ],
+      todos: [
+        { title: '2 đơn quá 30 phút chưa hoàn tất', desc: 'Đơn #1042 và #1047 vẫn ở trạng thái Đang làm.', href: 'DonHang.dc.html', bg: '#FBF0DC', dot: '#A96C05' },
+        { title: 'Chiến dịch nhắc khuyến mãi chờ duyệt', desc: '182 khách chưa quay lại trên 60 ngày.', href: 'ZaloOA.dc.html', bg: '#EEEBFD', dot: '#5A43E0' },
+        { title: 'Đỗ Thu Trang chưa chấm công ca chiều', desc: 'Ca mở lúc 13:02, chưa có bản ghi vào ca.', href: 'NhanVien.dc.html', bg: '#F5F6F8', dot: '#737A88' },
+      ],
+      zalo: [
+        { label: 'Tin cảm ơn đã gửi', value: '214' },
+        { label: 'Tin nhắc khuyến mãi', value: '96' },
+        { label: 'Khách đặt lịch lại từ tin', value: '31' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

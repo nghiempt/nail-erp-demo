@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Danh sách dịch vụ</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F5F6F8; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 1040px; box-sizing: border-box; display: flex; overflow: hidden; background: #F5F6F8;">
+
+  <aside style="width: 248px; flex-shrink: 0; height: 100%; background: #191B21; box-sizing: border-box; padding: 22px 14px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;">N</div>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; letter-spacing: -0.015em;">NailSpace</div>
+        <div style="font-size: 11px; color: #8B92A0; margin-top: 1px;">Nail Studio Hạ Vy</div>
+      </div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px;">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+        <a href="{{item.href}}" style="display: flex; align-items: center; gap: 11px; height: 42px; padding: 0 12px; border-radius: 10px; font-size: 13.5px; font-weight: {{item.weight}}; color: {{item.color}}; background: {{item.bg}};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+          <span style="flex-grow: 1;">{{item.label}}</span>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; background: #22242B;">
+      <div style="width: 34px; height: 34px; border-radius: 50%; background: #34373F; color: #C9CEDA; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">HV</div>
+      <div style="flex-grow: 1;">
+        <div style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Trần Hạ Vy</div>
+        <div style="font-size: 11px; color: #8B92A0;">Chủ tiệm</div>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+    <header style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 14px; padding: 0 26px; box-sizing: border-box;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;">Dịch vụ</h1>
+        <div style="font-size: 12px; color: #737A88; margin-top: 2px;">24 dịch vụ đang bán · 3 dịch vụ tạm ẩn</div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 9px; width: 260px; height: 40px; border-radius: 10px; border: 1px solid #E4E7EC; background: #F8F9FB; padding: 0 12px; box-sizing: border-box;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B92A0" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="search" aria-label="Tìm dịch vụ" placeholder="Tìm theo tên dịch vụ" style="flex-grow: 1; border: none; outline: none; background: transparent; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; color: #14161A;">
+      </div>
+      <button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Nhập từ Excel</button>
+      <button type="button" style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 10px; border: none; background: {{accent}}; color: #FFFFFF; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Thêm dịch vụ
+      </button>
+    </header>
+
+    <div style="flex-grow: 1; padding: 20px 26px 22px; box-sizing: border-box; display: flex; gap: 16px; overflow: hidden;">
+
+      <aside style="width: 248px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 0 4px;">
+            <span style="font-size: 13px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif;">Nhóm dịch vụ</span>
+            <div style="flex-grow: 1;"></div>
+            <button type="button" aria-label="Thêm nhóm" style="width: 26px; height: 26px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+              <div style="display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 10px; border-radius: 9px; background: {{g.bg}};">
+                <span style="width: 9px; height: 9px; border-radius: 3px; background: {{g.color}};"></span>
+                <span style="flex-grow: 1; font-size: 13px; font-weight: {{g.weight}}; color: #2B303A;">{{g.name}}</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #737A88;">{{g.count}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+          <span style="font-size: 13px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif;">Bán chạy 30 ngày</span>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <sc-for list="{{top}}" as="t" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="flex-grow: 1; font-size: 13px; color: #2B303A;">{{t.name}}</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #737A88;">{{t.count}}</span>
+                </div>
+                <div style="height: 6px; border-radius: 3px; background: #EEF0F4; overflow: hidden;">
+                  <div style="width: {{t.w}}; height: 100%; background: {{accent}}; border-radius: 3px;"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </aside>
+
+      <section style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 16px 20px 14px;">
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Tất cả dịch vụ</h2>
+          <span style="font-size: 12.5px; color: #737A88;">Giá và thời lượng ở đây được dùng lại khi tạo đơn</span>
+          <div style="flex-grow: 1;"></div>
+          <span style="font-size: 12.5px; color: #737A88;">Sắp xếp: Nhóm dịch vụ</span>
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+          <thead>
+            <tr style="background: #F8F9FB;">
+              <th style="text-align: left; padding: 11px 20px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Dịch vụ</th>
+              <th style="text-align: left; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Nhóm</th>
+              <th style="text-align: right; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Thời lượng</th>
+              <th style="text-align: right; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Giá bán</th>
+              <th style="text-align: right; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Hoa hồng thợ</th>
+              <th style="text-align: center; padding: 11px 14px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Trạng thái</th>
+              <th style="text-align: right; padding: 11px 20px; font-size: 11.5px; font-weight: 600; color: #737A88; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+              <tr style="border-bottom: 1px solid #F1F3F6;">
+                <td style="padding: 11px 20px;">
+                  <div style="display: flex; align-items: center; gap: 11px;">
+                    <span style="width: 36px; height: 36px; border-radius: 10px; background: {{r.tint}}; flex-shrink: 0;"></span>
+                    <span style="display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-weight: 600;">{{r.name}}</span>
+                      <span style="font-size: 11.5px; color: #8B92A0;">{{r.note}}</span>
+                    </span>
+                  </div>
+                </td>
+                <td style="padding: 11px 14px;">
+                  <span style="padding: 4px 10px; border-radius: 999px; background: #F2F3F6; color: #5B6270; font-size: 11.5px; font-weight: 600;">{{r.group}}</span>
+                </td>
+                <td style="padding: 11px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #454B57;">{{r.time}}</td>
+                <td style="padding: 11px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 600;">{{r.price}}</td>
+                <td style="padding: 11px 14px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #454B57;">{{r.commission}}</td>
+                <td style="padding: 11px 14px; text-align: center;">
+                  <span style="padding: 4px 11px; border-radius: 999px; background: {{r.stateBg}}; color: {{r.stateColor}}; font-size: 11.5px; font-weight: 600;">{{r.state}}</span>
+                </td>
+                <td style="padding: 11px 20px;">
+                  <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                    <button type="button" aria-label="Sửa dịch vụ" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"></path></svg>
+                    </button>
+                    <button type="button" aria-label="Nhân bản dịch vụ" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #454B57; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V6a1 1 0 0 1 1-1h9"></path></svg>
+                    </button>
+                    <button type="button" aria-label="Xoá dịch vụ" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #A32B3E; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"></path></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid #EEF0F4;">
+          <span style="font-size: 12.5px; color: #737A88;">Hiển thị 10 trên 27 dịch vụ</span>
+          <div style="flex-grow: 1;"></div>
+          <button type="button" style="height: 34px; padding: 0 13px; border-radius: 9px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #737A88; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer;">Trước</button>
+          <button type="button" style="height: 34px; padding: 0 13px; border-radius: 9px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer;">Sau</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    const on = { bg: '#E4F3EB', color: '#0F7A4D', label: 'Đang bán' };
+    const off = { bg: '#F2F3F6', color: '#5B6270', label: 'Tạm ẩn' };
+    const mk = (name, note, group, time, price, commission, st, tint) => ({
+      name, note, group, time, price, commission, tint,
+      state: st.label, stateBg: st.bg, stateColor: st.color,
+    });
+    return {
+      accent,
+      nav: [
+        { label: 'Tổng quan', href: 'Main.dc.html', d: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' },
+        { label: 'Đơn hàng', href: 'DonHang.dc.html', d: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6' },
+        { label: 'Dịch vụ', href: 'DichVu.dc.html', active: true, d: 'M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4zM6 17h5M18 15v4' },
+        { label: 'Khách hàng', href: 'KhachHang.dc.html', d: 'M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4' },
+        { label: 'Nhân viên', href: 'NhanVien.dc.html', d: 'M5 5h14v14H5zM9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M8 16c.6-1.4 2-2.1 3-2.1s2.4.7 3 2.1M15 9h2M15 12h2' },
+        { label: 'Gallery', href: 'Gallery.dc.html', d: 'M4 5h16v14H4zM4 15l4-4 3 3 3-3 6 6M15 9h.01' },
+        { label: 'Zalo OA', href: 'ZaloOA.dc.html', d: 'M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z' },
+      ].map((n) => ({
+        ...n,
+        bg: n.active ? '#2A2D36' : 'transparent',
+        color: n.active ? '#FFFFFF' : '#9AA1AF',
+        weight: n.active ? '600' : '500',
+      })),
+      groups: [
+        { name: 'Tất cả', count: '27', color: '#C9CEDA', bg: '#F2F3F6', weight: '600' },
+        { name: 'Sơn gel', count: '9', color: '#5A43E0', bg: 'transparent', weight: '500' },
+        { name: 'Đắp bột / gel', count: '6', color: '#14915C', bg: 'transparent', weight: '500' },
+        { name: 'Nail art', count: '5', color: '#A96C05', bg: 'transparent', weight: '500' },
+        { name: 'Chăm sóc tay chân', count: '4', color: '#C2407C', bg: 'transparent', weight: '500' },
+        { name: 'Combo', count: '3', color: '#737A88', bg: 'transparent', weight: '500' },
+      ],
+      top: [
+        { name: 'Sơn gel màu trơn', count: '312', w: '100%' },
+        { name: 'Tháo bộ cũ', count: '241', w: '77%' },
+        { name: 'Đắp gel 2 tay', count: '166', w: '53%' },
+        { name: 'Vẽ hoa thủ công', count: '128', w: '41%' },
+      ],
+      rows: [
+        mk('Sơn gel màu trơn', '2 tay, đã gồm dũa form', 'Sơn gel', '55 phút', '180.000đ', '20%', on, '#EDEBF4'),
+        mk('Sơn gel ombre', 'Chuyển màu 2 tông', 'Sơn gel', '70 phút', '260.000đ', '20%', on, '#EDEBF4'),
+        mk('Sơn gel chân', 'Đã gồm ngâm chân 10 phút', 'Sơn gel', '45 phút', '160.000đ', '20%', on, '#EDEBF4'),
+        mk('Đắp gel 2 tay', 'Dáng almond / vuông / oval', 'Đắp bột / gel', '90 phút', '520.000đ', '22%', on, '#E7F0EB'),
+        mk('Đắp bột 2 tay', 'Bao gồm dũa và tạo form', 'Đắp bột / gel', '90 phút', '480.000đ', '22%', on, '#E7F0EB'),
+        mk('Vẽ hoa thủ công', 'Tính theo từng móng', 'Nail art', '15 phút/móng', '60.000đ', '30%', on, '#F2EBDF'),
+        mk('Đính đá / charm', 'Tính theo từng móng', 'Nail art', '5 phút/móng', '35.000đ', '30%', on, '#F2EBDF'),
+        mk('Chăm sóc tay', 'Ngâm, tẩy da chết, massage', 'Chăm sóc tay chân', '45 phút', '150.000đ', '18%', on, '#F3E9EE'),
+        mk('Combo tay và chân', 'Sơn gel tay + chân + spa chân', 'Combo', '150 phút', '890.000đ', '20%', on, '#EFF0F3'),
+        mk('Vẽ airbrush', 'Tạm ẩn — máy đang bảo trì', 'Nail art', '25 phút/móng', '120.000đ', '30%', off, '#F2EBDF'),
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

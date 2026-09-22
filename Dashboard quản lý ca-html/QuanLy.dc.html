@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Điều hành ca — Quản lý</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F5F6F8; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 1180px; box-sizing: border-box; display: flex; overflow: hidden; background: #F5F6F8;">
+
+  <aside style="width: 248px; flex-shrink: 0; height: 100%; background: #191B21; box-sizing: border-box; padding: 22px 14px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;">N</div>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; letter-spacing: -0.015em;">NailSpace</div>
+        <div style="font-size: 11px; color: #8B92A0; margin-top: 1px;">Nail Studio Hạ Vy</div>
+      </div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px;">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="7">
+        <a href="{{item.href}}" style="display: flex; align-items: center; gap: 11px; height: 42px; padding: 0 12px; border-radius: 10px; font-size: 13.5px; font-weight: {{item.weight}}; color: {{item.color}}; background: {{item.bg}};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+          <span style="flex-grow: 1;">{{item.label}}</span>
+          <sc-if value="{{item.badge}}" hint-placeholder-val="{{true}}">
+            <span style="padding: 2px 7px; border-radius: 999px; background: #34373F; color: #DDE1E8; font-size: 11px; font-weight: 600;">{{item.badge}}</span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; background: #22242B;">
+      <div style="width: 34px; height: 34px; border-radius: 50%; background: #34373F; color: #C9CEDA; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">TM</div>
+      <div style="flex-grow: 1;">
+        <div style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Trần Minh Thư</div>
+        <div style="font-size: 11px; color: #8B92A0;">Quản lý ca</div>
+      </div>
+      <a href="Login.dc.html" aria-label="Đăng xuất" style="width: 30px; height: 30px; border-radius: 8px; color: #8B92A0; display: flex; align-items: center; justify-content: center;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 17l5-5-5-5M20 12H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path></svg>
+      </a>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+    <header style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 14px; padding: 0 26px; box-sizing: border-box;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;">Điều hành ca chiều</h1>
+        <div style="font-size: 12px; color: #737A88; margin-top: 2px;">13:00 – 20:00 · mở lúc 13:02 bởi Trần Minh Thư</div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7EC; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Xếp thợ cho hàng đợi</button>
+      <button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #E8D5D8; background: #FBECEC; color: #A32B3E; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Đóng ca &amp; chốt quỹ</button>
+      <a href="TaoDon.dc.html" style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 13.5px; font-weight: 600;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Tạo đơn
+      </a>
+    </header>
+
+    <div style="flex-grow: 1; padding: 22px 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; overflow: hidden;">
+
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; flex-shrink: 0;">
+        <sc-for list="{{shiftStats}}" as="k" hint-placeholder-count="5">
+          <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 14px; padding: 16px 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 12.5px; color: #737A88;">{{k.label}}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; letter-spacing: -0.03em;">{{k.value}}</span>
+            <span style="font-size: 11.5px; color: {{k.noteColor}};">{{k.note}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 16px; flex-grow: 1; min-height: 0;">
+
+        <section style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700;">Hàng đợi khách trong ca</h2>
+            <span style="font-size: 12.5px; color: #737A88;">Kéo thẻ sang cột kế tiếp khi đổi trạng thái</span>
+            <div style="flex-grow: 1;"></div>
+            <a href="DonHang.dc.html" style="font-size: 13px; font-weight: 600;">Xem tất cả đơn →</a>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; flex-grow: 1; min-height: 0;">
+            <sc-for list="{{columns}}" as="col" hint-placeholder-count="3">
+              <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="width: 9px; height: 9px; border-radius: 3px; background: {{col.dot}};"></span>
+                  <span style="font-size: 13.5px; font-weight: 600;">{{col.title}}</span>
+                  <span style="padding: 2px 8px; border-radius: 999px; background: #F2F3F6; color: #5B6270; font-size: 11.5px; font-weight: 600;">{{col.count}}</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <sc-for list="{{col.cards}}" as="c" hint-placeholder-count="3">
+                    <a href="DonHang.dc.html" style="display: flex; flex-direction: column; gap: 9px; padding: 13px; border-radius: 12px; border: 1px solid #E8EAEF; background: #FCFCFD; color: #14161A;">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #737A88;">{{c.code}}</span>
+                        <div style="flex-grow: 1;"></div>
+                        <span style="padding: 2px 8px; border-radius: 999px; background: {{c.tagBg}}; color: {{c.tagColor}}; font-size: 11px; font-weight: 600;">{{c.tag}}</span>
+                      </div>
+                      <div style="font-size: 14px; font-weight: 600;">{{c.customer}}</div>
+                      <div style="font-size: 12.5px; color: #5B6270; line-height: 1.5;">{{c.service}}</div>
+                      <div style="display: flex; align-items: center; gap: 8px; padding-top: 9px; border-top: 1px solid #EEF0F4;">
+                        <span style="width: 24px; height: 24px; border-radius: 50%; background: #F0F1F5; color: #4A5160; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 600;">{{c.staffInitials}}</span>
+                        <span style="font-size: 12px; color: #737A88;">{{c.staff}}</span>
+                        <div style="flex-grow: 1;"></div>
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600;">{{c.amount}}</span>
+                      </div>
+                    </a>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="width: 352px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; min-height: 0;">
+          <div style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Chấm công ca chiều</h2>
+              <div style="flex-grow: 1;"></div>
+              <span style="font-size: 12.5px; color: #737A88;">4/6 có mặt</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <sc-for list="{{attendance}}" as="a" hint-placeholder-count="6">
+                <div style="display: flex; align-items: center; gap: 11px; padding: 9px 0; border-bottom: 1px solid #F1F3F6;">
+                  <span style="width: 32px; height: 32px; border-radius: 50%; background: #F0F1F5; color: #4A5160; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 600;">{{a.initials}}</span>
+                  <span style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <span style="font-size: 13.5px; font-weight: 600;">{{a.name}}</span>
+                    <span style="font-size: 11.5px; color: #8B92A0;">{{a.detail}}</span>
+                  </span>
+                  <span style="padding: 4px 9px; border-radius: 999px; background: {{a.bg}}; color: {{a.color}}; font-size: 11.5px; font-weight: 600;">{{a.status}}</span>
+                </div>
+              </sc-for>
+            </div>
+            <button type="button" style="height: 42px; border-radius: 11px; border: 1px solid #D3D8E0; background: #FFFFFF; color: #14161A; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;">Duyệt bảng công ca này</button>
+          </div>
+
+          <div style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; min-height: 0;">
+            <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; font-weight: 700;">Quỹ ca &amp; hình thức thanh toán</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <sc-for list="{{payments}}" as="p" hint-placeholder-count="3">
+                <div style="display: flex; flex-direction: column; gap: 7px;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="flex-grow: 1; font-size: 13.5px; color: #2B303A;">{{p.label}}</span>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; font-weight: 600;">{{p.value}}</span>
+                  </div>
+                  <div style="height: 7px; border-radius: 4px; background: #EEF0F4; overflow: hidden;">
+                    <div style="width: {{p.w}}; height: 100%; background: {{p.color}}; border-radius: 4px;"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 13px; border-radius: 12px; background: #F5F6F8;">
+              <span style="flex-grow: 1; font-size: 13px; font-weight: 600; color: #2B303A;">Tiền mặt phải nộp cuối ca</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600;">4.120.000đ</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    const nav = [
+      { label: 'Điều hành ca', href: 'QuanLy.dc.html', active: true, d: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 7v5l3 2' },
+      { label: 'Đơn hàng', href: 'DonHang.dc.html', badge: '5', d: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6' },
+      { label: 'Khách hàng', href: 'KhachHang.dc.html', d: 'M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4' },
+      { label: 'Dịch vụ', href: 'DichVu.dc.html', d: 'M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4zM6 17h5M18 15v4' },
+      { label: 'Nhân viên', href: 'NhanVien.dc.html', d: 'M5 5h14v14H5zM9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M8 16c.6-1.4 2-2.1 3-2.1s2.4.7 3 2.1M15 9h2M15 12h2' },
+      { label: 'Gallery', href: 'Gallery.dc.html', d: 'M4 5h16v14H4zM4 15l4-4 3 3 3-3 6 6M15 9h.01' },
+      { label: 'Zalo OA', href: 'ZaloOA.dc.html', badge: '2', d: 'M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z' },
+    ];
+    return {
+      accent,
+      nav: nav.map((n) => ({
+        ...n,
+        bg: n.active ? '#2A2D36' : 'transparent',
+        color: n.active ? '#FFFFFF' : '#9AA1AF',
+        weight: n.active ? '600' : '500',
+      })),
+      shiftStats: [
+        { label: 'Khách trong ca', value: '19', note: '6 đang chờ tới lượt', noteColor: '#737A88' },
+        { label: 'Đơn đã chốt', value: '12', note: '3 đơn chờ thanh toán', noteColor: '#8E5A04' },
+        { label: 'Doanh thu ca', value: '9.8 tr', note: 'chỉ tiêu ca 12 triệu', noteColor: '#737A88' },
+        { label: 'Thời gian chờ TB', value: '11 phút', note: 'dưới ngưỡng 15 phút', noteColor: '#0F7A4D' },
+        { label: 'Ghế đang dùng', value: '5/7', note: '2 ghế trống', noteColor: '#737A88' },
+      ],
+      columns: [
+        {
+          title: 'Chờ tới lượt', count: '3', dot: '#A96C05',
+          cards: [
+            { code: '#1051', customer: 'Nguyễn Thanh Hà', service: 'Sơn gel màu trơn + tháo bộ cũ', staff: 'Chưa xếp thợ', staffInitials: '?', amount: '230.000đ', tag: 'Chờ 6 phút', tagBg: '#FBF0DC', tagColor: '#8E5A04' },
+            { code: '#1052', customer: 'Khách vãng lai', service: 'Chăm sóc tay 45 phút', staff: 'Chưa xếp thợ', staffInitials: '?', amount: '150.000đ', tag: 'Chờ 2 phút', tagBg: '#F2F3F6', tagColor: '#5B6270' },
+            { code: '#1053', customer: 'Lý Bảo Ngọc', service: 'Đắp bột + nail art 4 móng', staff: 'Hẹn trước 17:00', staffInitials: 'LH', amount: '680.000đ', tag: 'Đặt lịch', tagBg: '#EEEBFD', tagColor: '#4836C4' },
+          ],
+        },
+        {
+          title: 'Đang làm', count: '4', dot: '#5A43E0',
+          cards: [
+            { code: '#1047', customer: 'Trịnh Mỹ Duyên', service: 'Đắp gel + vẽ hoa 6 móng', staff: 'Lê Hồng Hạnh', staffInitials: 'LH', amount: '890.000đ', tag: 'Quá 32 phút', tagBg: '#FBECEC', tagColor: '#A32B3E' },
+            { code: '#1049', customer: 'Phan Kiều Anh', service: 'Sơn gel 2 tay', staff: 'Nguyễn Ngọc Lan', staffInitials: 'NL', amount: '210.000đ', tag: '18 phút', tagBg: '#F2F3F6', tagColor: '#5B6270' },
+            { code: '#1050', customer: 'Hồ Ngọc Mai', service: 'Combo tay và chân', staff: 'Phạm Quỳnh Như', staffInitials: 'PQ', amount: '890.000đ', tag: '9 phút', tagBg: '#F2F3F6', tagColor: '#5B6270' },
+          ],
+        },
+        {
+          title: 'Chờ thanh toán', count: '3', dot: '#14915C',
+          cards: [
+            { code: '#1042', customer: 'Đặng Thuỳ Linh', service: 'Sơn gel + tháo bộ cũ', staff: 'Võ Thuý An', staffInitials: 'VA', amount: '260.000đ', tag: 'Đã xong 12 phút', tagBg: '#FBF0DC', tagColor: '#8E5A04' },
+            { code: '#1045', customer: 'Bùi Hải Yến', service: 'Nail art vẽ tay 10 móng', staff: 'Lê Hồng Hạnh', staffInitials: 'LH', amount: '900.000đ', tag: 'Chuyển khoản', tagBg: '#E4F3EB', tagColor: '#0F7A4D' },
+            { code: '#1046', customer: 'Khách vãng lai', service: 'Chăm sóc chân 45 phút', staff: 'Đỗ Thu Trang', staffInitials: 'DT', amount: '180.000đ', tag: 'Tiền mặt', tagBg: '#F2F3F6', tagColor: '#5B6270' },
+          ],
+        },
+      ],
+      attendance: [
+        { initials: 'NL', name: 'Nguyễn Ngọc Lan', detail: 'Vào ca 12:58 · ghế 1', status: 'Có mặt', bg: '#E4F3EB', color: '#0F7A4D' },
+        { initials: 'PQ', name: 'Phạm Quỳnh Như', detail: 'Vào ca 13:01 · ghế 3', status: 'Có mặt', bg: '#E4F3EB', color: '#0F7A4D' },
+        { initials: 'LH', name: 'Lê Hồng Hạnh', detail: 'Vào ca 13:04 · ghế 5', status: 'Có mặt', bg: '#E4F3EB', color: '#0F7A4D' },
+        { initials: 'VA', name: 'Võ Thuý An', detail: 'Vào ca 13:26 · trễ 26 phút', status: 'Đi trễ', bg: '#FBF0DC', color: '#8E5A04' },
+        { initials: 'DT', name: 'Đỗ Thu Trang', detail: 'Chưa có bản ghi vào ca', status: 'Chưa chấm', bg: '#FBECEC', color: '#A32B3E' },
+        { initials: 'TT', name: 'Trương Thanh Tú', detail: 'Xin nghỉ có báo trước', status: 'Nghỉ phép', bg: '#F2F3F6', color: '#5B6270' },
+      ],
+      payments: [
+        { label: 'Chuyển khoản / QR', value: '5.680.000đ', w: '58%', color: accent },
+        { label: 'Tiền mặt', value: '3.320.000đ', w: '34%', color: '#14915C' },
+        { label: 'Thẻ', value: '800.000đ', w: '8%', color: '#A96C05' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

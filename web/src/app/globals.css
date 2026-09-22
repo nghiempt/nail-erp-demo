@@ -1,0 +1,40 @@
+:root {
+  --ns-bg: #f5f6f8;
+  --ns-ink: #14161a;
+  --ns-accent: #5a43e0;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  background: var(--ns-bg);
+  color: var(--ns-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ns-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4836c4;
+}
+
+/* The designs are fixed-width artboards; this wrapper scales them to the
+   viewport so every page stays readable down to phone width. */
+.artboard-viewport {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.artboard-scaler {
+  transform-origin: top left;
+}

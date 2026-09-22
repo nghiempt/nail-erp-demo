@@ -1,0 +1,62 @@
+[
+  {
+    "route": "/dich-vu",
+    "title": "Danh sách dịch vụ",
+    "base": "DichVu.dc.html"
+  },
+  {
+    "route": "/don-hang",
+    "title": "Quản lý đơn hàng",
+    "base": "DonHang.dc.html"
+  },
+  {
+    "route": "/dashboard",
+    "title": "Tổng quan — Chủ tiệm",
+    "base": "Main.dc.html"
+  },
+  {
+    "route": "/nhan-vien-dashboard",
+    "title": "Ca của tôi — Nhân viên",
+    "base": "NhanVienDashboard.dc.html"
+  },
+  {
+    "route": "/quan-ly",
+    "title": "Điều hành ca — Quản lý",
+    "base": "QuanLy.dc.html"
+  },
+  {
+    "route": "/gallery",
+    "title": "Gallery mẫu móng",
+    "base": "Gallery.dc.html"
+  },
+  {
+    "route": "/",
+    "title": "Landing — Nail Studio Hạ Vy",
+    "base": "Landing.dc.html"
+  },
+  {
+    "route": "/nhan-vien",
+    "title": "Nhân viên và chấm công",
+    "base": "NhanVien.dc.html"
+  },
+  {
+    "route": "/khach-hang",
+    "title": "Danh sách khách hàng",
+    "base": "KhachHang.dc.html"
+  },
+  {
+    "route": "/tao-don",
+    "title": "Tạo đơn hàng tại quầy",
+    "base": "TaoDon.dc.html"
+  },
+  {
+    "route": "/zalo-oa",
+    "title": "Tin nhắn Zalo OA",
+    "base": "ZaloOA.dc.html"
+  },
+  {
+    "route": "/login",
+    "title": "Đăng nhập — NailSpace",
+    "base": "Login.dc.html"
+  }
+]

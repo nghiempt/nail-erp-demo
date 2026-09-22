@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Landing — Nail Studio Hạ Vy</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #FFFFFF; color: #14161A; -webkit-font-smoothing: antialiased; }
+a { color: #5A43E0; text-decoration: none; }
+a:hover { color: #4836C4; }
+</style>
+</helmet>
+<div style="width: 1440px; height: 3120px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden;">
+
+<header id="top" style="height: 80px; flex-shrink: 0; border-bottom: 1px solid #ECEEF2; display: flex; align-items: center; gap: 36px; padding: 0 80px; box-sizing: border-box;">
+  <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #14161A;">
+    <div style="width: 34px; height: 34px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 16px;">H</div>
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.02em;">Nail Studio Hạ Vy</div>
+  </a>
+  <nav style="display: flex; align-items: center; gap: 26px;">
+    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+      <a href="{{m.href}}" style="font-size: 14px; font-weight: 500; color: #454B57;">{{m.label}}</a>
+    </sc-for>
+  </nav>
+  <div style="flex-grow: 1;"></div>
+  <a href="Login.dc.html" style="font-size: 14px; font-weight: 600; color: #454B57;">Đăng nhập</a>
+  <a href="#dat-lich" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 11px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 600;">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 15a3 3 0 0 1-3 3H8l-4 3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z"></path></svg>
+    Đặt lịch qua Zalo
+  </a>
+</header>
+
+<section style="flex-shrink: 0; padding: 68px 80px 72px; display: flex; gap: 60px; align-items: center; box-sizing: border-box;">
+  <div style="width: 548px; flex-shrink: 0; display: flex; flex-direction: column; gap: 22px;">
+    <div style="display: flex; align-items: center; gap: 8px; align-self: flex-start; padding: 7px 13px; border-radius: 999px; background: #EEEBFD; color: #4836C4; font-size: 12.5px; font-weight: 600;">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: {{accent}};"></span>
+      Nail studio tại [ĐỊA CHỈ TIỆM]
+    </div>
+    <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 58px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 800;">Bộ móng vừa ý,<br>làm đúng giờ hẹn.</h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.62; color: #454B57; max-width: 486px; text-wrap: pretty;">Đặt lịch trước qua Zalo, chọn sẵn thợ và mẫu móng bạn thích. Tiệm xác nhận trong ít phút, nhắc lại trước giờ hẹn và gửi hoá đơn ngay sau khi làm xong.</p>
+    <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px;">
+      <a href="#dat-lich" style="display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 26px; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 600;">Đặt lịch ngay</a>
+      <a href="#bang-gia" style="display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 24px; border-radius: 12px; border: 1px solid #D3D8E0; color: #14161A; font-size: 15px; font-weight: 600;">Xem bảng giá</a>
+    </div>
+    <div style="display: flex; gap: 28px; margin-top: 12px; padding-top: 22px; border-top: 1px solid #ECEEF2;">
+      <sc-for list="{{heroFacts}}" as="f" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 21px; font-weight: 600; letter-spacing: -0.02em;">{{f.value}}</div>
+          <div style="font-size: 12.5px; color: #737A88;">{{f.label}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="flex-grow: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 214px 214px; gap: 16px;">
+    <div style="grid-row: span 2; border-radius: 18px; background: #ECEEF3; border: 1px solid #E1E4EA; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box; color: #6E7686; font-size: 12.5px; font-weight: 500;">[ẢNH — bộ móng gel]</div>
+    <div style="border-radius: 18px; background: #EDEBF4; border: 1px solid #E3E1EC; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box; color: #6E7686; font-size: 12.5px; font-weight: 500;">[ẢNH — không gian tiệm]</div>
+    <div style="border-radius: 18px; background: #F0ECEA; border: 1px solid #E6E1DE; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box; color: #6E7686; font-size: 12.5px; font-weight: 500;">[ẢNH — nail art vẽ tay]</div>
+  </div>
+</section>
+
+<section id="dich-vu" style="flex-shrink: 0; padding: 56px 80px 64px; background: #FAFAFB; border-top: 1px solid #ECEEF2; border-bottom: 1px solid #ECEEF2; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px;">
+  <div style="display: flex; align-items: flex-end; gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.025em;">Dịch vụ tại tiệm</h2>
+      <p style="margin: 0; font-size: 15px; color: #454B57; max-width: 540px;">Giá đã gồm tháo bộ cũ và chăm sóc da tay cơ bản. Thời gian là mức trung bình thực tế, tiệm báo lại nếu mẫu bạn chọn cần lâu hơn.</p>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <a href="#bang-gia" style="font-size: 14px; font-weight: 600;">Xem bảng giá đầy đủ →</a>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;">
+    <sc-for list="{{services}}" as="s" hint-placeholder-count="4">
+      <article style="background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 16px; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+        <div style="height: 132px; border-radius: 12px; background: {{s.tint}}; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; color: #6E7686; font-size: 11.5px; font-weight: 500;">{{s.photo}}</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.015em;">{{s.name}}</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #737A88;">{{s.desc}}</p>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-top: auto; padding-top: 14px; border-top: 1px solid #EEF0F4;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600;">{{s.price}}</span>
+          <span style="font-size: 12.5px; color: #737A88;">· {{s.time}}</span>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="bang-gia" style="flex-shrink: 0; padding: 62px 80px 66px; box-sizing: border-box; display: flex; flex-direction: column; gap: 30px;">
+  <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center;">
+    <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.025em;">Combo tiết kiệm</h2>
+    <p style="margin: 0; font-size: 15px; color: #454B57; max-width: 560px;">Khách quen tích điểm tự động theo số điện thoại — đủ mốc là tiệm nhắn ưu đãi qua Zalo, không cần giữ thẻ giấy.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;">
+    <sc-for list="{{combos}}" as="c" hint-placeholder-count="3">
+      <article style="border: {{c.border}}; border-radius: 18px; padding: 28px; box-sizing: border-box; background: {{c.bg}}; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; font-weight: 700;">{{c.name}}</h3>
+          <sc-if value="{{c.featured}}" hint-placeholder-val="{{true}}">
+            <span style="padding: 4px 10px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 11.5px; font-weight: 600;">Được chọn nhiều</span>
+          </sc-if>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; letter-spacing: -0.03em;">{{c.price}}</span>
+          <span style="font-size: 13.5px; color: #737A88; text-decoration: line-through;">{{c.was}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <sc-for list="{{c.items}}" as="it" hint-placeholder-count="4">
+            <div style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #454B57;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14915C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span>{{it}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#dat-lich" style="margin-top: auto; display: flex; align-items: center; justify-content: center; height: 46px; border-radius: 11px; background: {{c.btnBg}}; color: {{c.btnColor}}; border: {{c.btnBorder}}; font-size: 14.5px; font-weight: 600; box-sizing: border-box;">Đặt combo này</a>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="gallery" style="flex-shrink: 0; padding: 56px 80px 62px; background: #FAFAFB; border-top: 1px solid #ECEEF2; border-bottom: 1px solid #ECEEF2; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px;">
+  <div style="display: flex; align-items: flex-end; gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.025em;">Mẫu đã làm tại tiệm</h2>
+      <p style="margin: 0; font-size: 15px; color: #454B57;">Chụp trực tiếp sau khi hoàn thiện. Bạn có thể gửi mã mẫu cho tiệm khi đặt lịch.</p>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <a href="#gallery" style="font-size: 14px; font-weight: 600;">Xem tất cả 240 mẫu →</a>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;">
+    <sc-for list="{{gallery}}" as="g" hint-placeholder-count="6">
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 9px;">
+        <div style="height: 196px; border-radius: 14px; background: {{g.tint}}; border: 1px solid #E4E7EC; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; color: #6E7686; font-size: 11.5px; font-weight: 500;">[ẢNH]</div>
+        <figcaption style="font-size: 12.5px; color: #454B57;">{{g.code}} · {{g.name}}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section style="flex-shrink: 0; padding: 56px 80px 58px; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px;">
+  <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.025em;">Khách nói gì về tiệm</h2>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+    <sc-for list="{{reviews}}" as="r" hint-placeholder-count="3">
+      <blockquote style="margin: 0; background: #FAFAFB; border: 1px solid #E4E7EC; border-radius: 16px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; gap: 3px;">
+          <sc-for list="{{r.stars}}" as="st" hint-placeholder-count="5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#A96C05" aria-hidden="true"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.4l6-.8z"></path></svg>
+          </sc-for>
+        </div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #2B303A;">[TRÍCH ĐÁNH GIÁ CỦA KHÁCH — dán từ Google Maps hoặc Zalo OA]</p>
+        <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding-top: 4px;">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: #E7E9EF; color: #5B6270; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600;">{{r.initials}}</div>
+          <div style="font-size: 13px; color: #737A88;">[TÊN KHÁCH] · {{r.service}}</div>
+        </div>
+      </blockquote>
+    </sc-for>
+  </div>
+</section>
+
+<section id="dat-lich" style="flex-shrink: 0; margin: 0 80px; border-radius: 22px; background: #191B21; padding: 44px 48px; box-sizing: border-box; display: flex; align-items: center; gap: 48px;">
+  <div style="display: flex; flex-direction: column; gap: 12px; max-width: 560px;">
+    <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.025em;">Nhắn Zalo, tiệm giữ chỗ cho bạn</h2>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #A7AEBC;">Giờ mở cửa 9:00 – 20:00 mỗi ngày · [ĐỊA CHỈ TIỆM] · Hotline [SỐ ĐIỆN THOẠI]</p>
+  </div>
+  <div style="flex-grow: 1;"></div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <a href="#dat-lich" style="display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 26px; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 600;">Nhắn Zalo OA</a>
+    <a href="#dat-lich" style="display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 24px; border-radius: 12px; border: 1px solid #3A3D47; color: #FFFFFF; font-size: 15px; font-weight: 600;">Gọi [SỐ ĐIỆN THOẠI]</a>
+  </div>
+</section>
+
+<footer style="margin-top: auto; flex-shrink: 0; padding: 40px 80px; box-sizing: border-box; border-top: 1px solid #ECEEF2; display: flex; align-items: center; gap: 32px;">
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px;">Nail Studio Hạ Vy</div>
+    <div style="font-size: 13px; color: #737A88;">[ĐỊA CHỈ TIỆM] · [SỐ ĐIỆN THOẠI] · [EMAIL]</div>
+  </div>
+  <div style="flex-grow: 1;"></div>
+  <nav style="display: flex; align-items: center; gap: 24px;">
+    <a href="#dich-vu" style="font-size: 13.5px; color: #454B57;">Dịch vụ</a>
+    <a href="#bang-gia" style="font-size: 13.5px; color: #454B57;">Bảng giá</a>
+    <a href="#gallery" style="font-size: 13.5px; color: #454B57;">Gallery</a>
+    <a href="Login.dc.html" style="font-size: 13.5px; font-weight: 600;">Nhân viên đăng nhập</a>
+  </nav>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5A43E0","options":["#5A43E0","#14915C","#C2407C","#191B21"],"section":"Thương hiệu"},"$preview":{"width":1440,"height":3120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#5A43E0';
+    return {
+      accent,
+      menu: [
+        { label: 'Dịch vụ', href: '#dich-vu' },
+        { label: 'Bảng giá', href: '#bang-gia' },
+        { label: 'Gallery', href: '#gallery' },
+        { label: 'Liên hệ', href: '#dat-lich' },
+      ],
+      heroFacts: [
+        { value: '9:00–20:00', label: 'Mở cửa cả tuần' },
+        { value: '6 thợ', label: 'Đặt theo tên thợ' },
+        { value: '~5 phút', label: 'Xác nhận lịch qua Zalo' },
+      ],
+      services: [
+        { name: 'Sơn gel', desc: 'Sơn gel màu trơn, giữ form và độ bóng khoảng 3 tuần.', price: 'từ 180.000đ', time: '60 phút', photo: '[ẢNH — sơn gel]', tint: '#ECEEF3' },
+        { name: 'Đắp bột / gel', desc: 'Đắp dài theo dáng móng bạn chọn, kèm dũa form.', price: 'từ 320.000đ', time: '90 phút', photo: '[ẢNH — đắp bột]', tint: '#EDEBF4' },
+        { name: 'Nail art vẽ tay', desc: 'Vẽ theo mẫu trong gallery hoặc ảnh bạn gửi.', price: 'từ 90.000đ/móng', time: '15 phút/móng', photo: '[ẢNH — nail art]', tint: '#F0ECEA' },
+        { name: 'Chăm sóc tay chân', desc: 'Ngâm, tẩy da chết, cắt da và massage 15 phút.', price: 'từ 150.000đ', time: '45 phút', photo: '[ẢNH — spa tay chân]', tint: '#EAEFEE' },
+      ],
+      combos: [
+        {
+          name: 'Cơ bản', price: '350.000đ', was: '410.000đ', featured: false,
+          items: ['Sơn gel màu trơn 2 tay', 'Cắt da + dũa form', 'Dặm lại miễn phí trong 7 ngày'],
+          bg: '#FFFFFF', border: '1px solid #E4E7EC', btnBg: '#FFFFFF', btnColor: '#14161A', btnBorder: '1px solid #D3D8E0',
+        },
+        {
+          name: 'Được yêu thích', price: '590.000đ', was: '720.000đ', featured: true,
+          items: ['Sơn gel + nail art 4 móng', 'Chăm sóc tay 30 phút', 'Tháo bộ cũ miễn phí', 'Tích 2x điểm thành viên'],
+          bg: '#FFFFFF', border: '2px solid ' + accent, btnBg: accent, btnColor: '#FFFFFF', btnBorder: '2px solid ' + accent,
+        },
+        {
+          name: 'Trọn gói tay & chân', price: '890.000đ', was: '1.050.000đ', featured: false,
+          items: ['Sơn gel tay và chân', 'Nail art tự chọn 6 móng', 'Spa chân 45 phút', 'Đặt trước khung giờ cố định'],
+          bg: '#FFFFFF', border: '1px solid #E4E7EC', btnBg: '#FFFFFF', btnColor: '#14161A', btnBorder: '1px solid #D3D8E0',
+        },
+      ],
+      gallery: [
+        { code: 'HV-118', name: 'Ombre hồng sữa', tint: '#EFECF5' },
+        { code: 'HV-204', name: 'Kẻ line vàng', tint: '#F1EDE8' },
+        { code: 'HV-076', name: 'Nude đá nhỏ', tint: '#EDEFF2' },
+        { code: 'HV-231', name: 'Hoa vẽ tay', tint: '#EAEFED' },
+        { code: 'HV-145', name: 'Móng trong thạch', tint: '#EEEDF3' },
+        { code: 'HV-190', name: 'Đỏ cổ điển', tint: '#F2ECEE' },
+      ],
+      reviews: [
+        { initials: 'NT', service: 'Sơn gel + nail art', stars: [1, 2, 3, 4, 5] },
+        { initials: 'PL', service: 'Đắp bột', stars: [1, 2, 3, 4, 5] },
+        { initials: 'HA', service: 'Combo tay & chân', stars: [1, 2, 3, 4, 5] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
