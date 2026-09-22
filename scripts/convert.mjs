@@ -267,7 +267,13 @@ import html from "@/generated/${name}";
 export const metadata = { title: ${JSON.stringify(p.title)} };
 
 export default function Page() {
-  return <Artboard html={html} width={${p.preview.width ?? 1440}} />;
+  return (
+    <Artboard
+      html={html}
+      width={${p.preview.width ?? 1440}}
+      name="${name}"
+    />
+  );
 }
 `);
   console.log(p.route, '->', name, p.html.length, 'bytes');

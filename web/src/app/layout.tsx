@@ -1,10 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "NailSpace — Quản lý tiệm nail",
   description:
     "Bản demo hệ thống quản lý tiệm nail: đặt lịch, đơn hàng, chấm công, khách hàng và Zalo OA.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

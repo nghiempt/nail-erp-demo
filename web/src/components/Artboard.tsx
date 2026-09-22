@@ -1,54 +1,43 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type Props = {
   html: string;
-  /**
-   * Width the design was authored at. Used as the minimum the layout is
-   * allowed to reflow to before we scale instead.
-   */
+  /** Width the design was authored at. */
   width: number;
+  /** Identifies the page to the responsive stylesheet. */
+  name?: string;
 };
 
-export default function Artboard({ html, width }: Props) {
+/**
+ * Renders a converted design artboard.
+ *
+ * At or above the design width the markup is shown exactly as drawn. Below it
+ * `responsive.css` reflows the shell — the sidebar becomes a drawer, fixed
+ * side panels wrap, grids collapse to one column and tables scroll. That
+ * switch is driven entirely by media queries so the correct layout is there
+ * on first paint; this component only owns the drawer's open state.
+ */
+export default function Artboard({ html, width, name }: Props) {
   const router = useRouter();
   const hostRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-  const [height, setHeight] = useState<number | undefined>(undefined);
+  const [navOpen, setNavOpen] = useState(false);
 
-  // The layouts hold fixed-width sidebars and detail panels that only fit
-  // side by side at the width the design was drawn for. Narrower than that
-  // and they overflow (and get clipped), so below this floor the whole page
-  // is scaled down rather than reflowed.
-  const MIN_WIDTH = width;
+  const closeNav = useCallback(() => setNavOpen(false), []);
 
+  // Close the drawer once the viewport grows back past the design width.
   useEffect(() => {
-    const host = hostRef.current;
-    if (!host) return;
-
-    const fit = () => {
-      const available = host.parentElement?.clientWidth ?? window.innerWidth;
-      const next = available >= MIN_WIDTH ? 1 : available / MIN_WIDTH;
-      setScale(next);
-      setHeight(next === 1 ? undefined : host.offsetHeight * next);
+    const query = window.matchMedia(`(min-width: ${width}px)`);
+    const sync = () => {
+      if (query.matches) setNavOpen(false);
     };
 
-    fit();
-    window.addEventListener("resize", fit);
-    document.fonts?.ready.then(fit).catch(() => {});
-
-    // Observe the container, not the artboard: scaling changes the artboard's
-    // own box, which would feed straight back into this callback.
-    const observer = new ResizeObserver(fit);
-    if (host.parentElement) observer.observe(host.parentElement);
-
-    return () => {
-      window.removeEventListener("resize", fit);
-      observer.disconnect();
-    };
-  }, [MIN_WIDTH, html]);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, [width]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -66,6 +55,7 @@ export default function Artboard({ html, width }: Props) {
       if (anchor.target === "_blank") return;
 
       event.preventDefault();
+      setNavOpen(false);
       router.push(href);
     };
 
@@ -74,26 +64,37 @@ export default function Artboard({ html, width }: Props) {
   }, [router]);
 
   return (
-    <div
-      className="artboard-viewport"
-      // While scaled the transform origin is the left edge, so centring the
-      // flex item would shift the page off to one side.
-      style={{ height, justifyContent: scale === 1 ? undefined : "flex-start" }}
-    >
+    <div className="artboard-viewport" data-nav={navOpen ? "open" : undefined}>
+      {/* Both are revealed by `responsive.css` only below the design width. */}
+      <button
+        type="button"
+        className="artboard-navtoggle"
+        aria-label={navOpen ? "Đóng menu" : "Mở menu"}
+        aria-expanded={navOpen}
+        onClick={() => setNavOpen((open) => !open)}
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          {navOpen ? (
+            <path d="M6 6l12 12M18 6L6 18" />
+          ) : (
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          )}
+        </svg>
+      </button>
+      <div className="artboard-scrim" onClick={closeNav} />
       <div
         ref={hostRef}
         className="artboard-scaler"
-        style={{
-          // Below the reflow floor the page holds its width and is scaled down
-          // instead, so `flex` must not stretch it back out.
-          ...(scale === 1
-            ? null
-            : {
-                flex: "0 0 auto",
-                width: MIN_WIDTH,
-                transform: `scale(${scale})`,
-              }),
-        }}
+        data-artboard={name}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

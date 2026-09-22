@@ -1,3 +1,5 @@
+@import "./responsive.css";
+
 :root {
   --ns-bg: #f5f6f8;
   --ns-ink: #14161a;
@@ -36,13 +38,12 @@ a:hover {
   justify-content: center;
 }
 
-/* The designs were drawn at a fixed 1440px. The converter relaxes that to a
-   fluid width so the layout fills the window instead of leaving a dead strip
-   beside it; this caps how far it may stretch on a large monitor so rows and
-   copy stay readable. Centring is applied here rather than with `margin: auto`
-   so it does not fight the transform used at narrow widths. */
+/* The designs were drawn at a fixed 1440px. The converter relaxes the width so
+   the layout fills the window instead of leaving a dead strip beside it; this
+   caps how far it may stretch on a large monitor so rows and copy stay
+   readable. */
 .artboard-scaler {
-  transform-origin: top left;
   flex: 1 1 auto;
   max-width: 1920px;
+  min-width: 0;
 }
